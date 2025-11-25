@@ -1,8 +1,8 @@
 <script setup>
 import NavBar from './Reusable/NavBar.vue';
-import Characters from './Pages/Characters/CharactersMain.vue';
+import Controls from './Pages/Controls/ControlsMain.vue';
 </script>
 <template>
     <NavBar/>
-    <Characters/>
+    <Controls/>
 </template>

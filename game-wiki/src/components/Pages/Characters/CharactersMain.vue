@@ -105,23 +105,13 @@
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="social-icons">
-        <div class="icon discord">
-          <img :src="discordIcon" alt="Discord" class="social-icon-img"/>
-        </div>
-        <div class="icon roblox">
-            <img :src="robloxIcon" alt="Roblox" class="social-icon-img"/>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
-import discordIcon from '@/assets/img/discord.png';
-import robloxIcon from '@/assets/img/roblox.png';
+import Footer from '@/components/Reusable/Footer.vue';
 import gojoImg from '@/assets/img/Gojo.png';
 import yujiImg from '@/assets/img/Yuji.png';
 import megumiImg from '@/assets/img/Megumi.png';
@@ -791,48 +781,6 @@ const currentSkills = computed(() => {
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-.footer {
-  background: #111;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.social-icons {
-  display: flex;
-  gap: 20px;
-}
-
-.icon {
-  background: #333;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.icon.discord,
-.icon.roblox {
-  width: 64px;
-  height: 64px;
-  padding: 1px;
-  justify-content: center;
-  border-radius: 20%;
-}
-.icon.discord { color: #fff; background: #23272a; }
-.icon.roblox { color: white; background: #23272a; }
-
-.social-icon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 20%;
 }
 
 @media (max-width: 1024px) {
