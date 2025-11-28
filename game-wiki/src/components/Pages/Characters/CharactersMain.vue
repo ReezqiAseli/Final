@@ -94,8 +94,10 @@
               </button>
               <transition name="fade-slide">
                 <div v-if="activeSkill === skill.name" class="skill-preview-card">
-                  <img :src="skill.preview" :alt="`${skill.name} preview`" />
-                  <span class="preview-label">GIF Preview</span>
+                  <img :src="skill.preview" :alt="`${skill.name}`" />
+                  <video autoplay loop muted playsinline class="skill-preview-video">
+                    <source :src="skill.preview" type="video/mp4"/>
+                  </video>
                 </div>
               </transition>
             </li>
@@ -121,6 +123,8 @@ import yutaImg from '@/assets/img/Yuta.png';
 import mechamaruImg from '@/assets/img/Mechamaru.png';
 import chosoImg from '@/assets/img/Choso.png';
 import mahitoImg from '@/assets/img/Mahito.png';
+import captionGifs from '@/assets/img/gifs/caption.gif';
+import LapseBlueGif from '@/assets/img/gifs/CelestiaSus.mp4';
 
 const searchQuery = ref('');
 const activeFilter = ref('All');
@@ -145,8 +149,8 @@ const characters = [
     image: gojoImg,
     skillSets: {
       base: [
-        { name: 'Cursed Technique Amplification: Blue', desc: 'Generates a crushing vacuum that drags foes into a single point.', preview: 'https://media1.tenor.com/m/ciWCfCGCt74AAAAC/jjs-tze-roblox-jjs.gif' },
-        { name: 'Reversal: Red', desc: 'Explosive repulsion burst that deletes anything caught in the blast radius.' },
+        { name: 'Lapse Blue', desc: 'he user attracts the opponent towards them, then suspends them in place to kick them skyward. Youre able to follow up with the special immediately after the kick to deal additional damage.', preview: LapseBlueGif },
+        { name: 'Reversal: Red', desc: 'Explosive repulsion burst that deletes anything caught in the blast radius.', preview: captionGifs },
         { name: 'Hollow Purple', desc: 'Combines Blue and Red into an unstoppable beam that pierces the entire arena.' },
       ],
       awakening: [
@@ -349,7 +353,6 @@ const filteredCharacters = computed(() => {
                           (activeFilter.value === 'Base Only' && char.type === 'Base') ||
                           (activeFilter.value === 'Completed' && char.type === 'Completed') ||
                           (activeFilter.value === 'Early Access' && char.type === 'Early Access');
-                          // Tambahkan logika filter lain sesuai kebutuhan data
 
     return matchesSearch && matchesFilter;
   });
@@ -384,14 +387,14 @@ const currentSkills = computed(() => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 
 /* --- Global Layout (Mewarisi style Home) --- */
 .app-container {
   min-height: 100vh;
   background: radial-gradient(circle at top left, #005c57 0%, #050a14 40%, #2c3e50 100%);
   color: white;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Finger Paint', cursive;
   display: flex;
   flex-direction: column;
 }
@@ -412,7 +415,7 @@ const currentSkills = computed(() => {
 .header-text {
   text-align: center;
   margin-bottom: 30px;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
 }
 
 .header-text h1 {
@@ -425,7 +428,7 @@ const currentSkills = computed(() => {
   font-size: 1.2rem;
   margin-top: 5px;
   opacity: 0.8;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
 }
 
 /* --- Controls (Search & Filter) --- */
@@ -459,7 +462,7 @@ const currentSkills = computed(() => {
   border: 1px solid #2c3e50;
   background: #050a14;
   color: white;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Finger Paint', cursive;
   font-size: 0.95rem;
   box-sizing: border-box; /* Penting agar padding tidak merusak width */
 }
@@ -483,7 +486,7 @@ const currentSkills = computed(() => {
   padding: 6px 16px;
   border-radius: 20px;
   cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Finger Paint', cursive;
   font-size: 0.85rem;
   transition: all 0.3s ease;
 }
@@ -554,7 +557,7 @@ const currentSkills = computed(() => {
 }
 
 .card-info h2 {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
   font-size: 1.4rem;
   margin: 0 0 5px 0;
   display: flex;
@@ -646,7 +649,7 @@ const currentSkills = computed(() => {
 
 .modal-skills h3 {
   margin: 0 0 10px 0;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
 }
 
 .skill-tabs {

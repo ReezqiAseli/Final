@@ -49,7 +49,6 @@
                   <transition name="fade-slide">
                     <div v-if="activePreview === section.heading" class="control-preview-card">
                       <img :src="section.preview" :alt="`${section.heading} preview`" />
-                      <span class="preview-label">GIF Preview</span>
                     </div>
                   </transition>
                 </div>
@@ -137,7 +136,7 @@ const currentContent = computed(() => {
   min-height: 100vh;
   width: 100%;
   /* Gradient Background sesuai React */
-  background: linear-gradient(139deg, rgba(0,0,0,1) 0%, rgba(3,7,18,1) 43%, rgba(2,47,46,0.3) 100%);
+  background: radial-gradient(circle at top left, #005c57 0%, #050a14 40%, #2c3e50 100%);
   display: flex;
   justify-content: center;
   color: white;
@@ -252,7 +251,7 @@ const currentContent = computed(() => {
 }
 
 .section-block p, .section-block li {
-  font-family: 'Nunito', sans-serif; /* Menggunakan Nunito untuk teks body agar lebih mudah dibaca */
+  font-family: 'Finger Paint', cursive; /* Body text set to Finger Paint */
   font-size: 1.1rem;
   line-height: 1.6;
   color: #e0e0e0;

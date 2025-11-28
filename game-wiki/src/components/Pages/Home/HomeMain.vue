@@ -22,7 +22,7 @@
         <h2>ts game so peak go play it</h2>
       </div>
     </main>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ const cards = [
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 
 body, html {
   margin: 0;
@@ -54,7 +54,7 @@ body, html {
   min-height: 100vh;
   background: radial-gradient(circle at top left, #005c57 0%, #050a14 40%, #2c3e50 100%);
   color: white;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Finger Paint', cursive;
   display: flex;
   flex-direction: column;
 }
@@ -70,7 +70,7 @@ body, html {
 .header-text {
   text-align: center;
   margin-bottom: 50px;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
 } 
 
 .header-text h1 {
@@ -128,7 +128,7 @@ body, html {
 }
 
 .card-content h2 {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
   font-size: 2rem;
   margin: 0 0 5px 0;
 }
@@ -152,7 +152,7 @@ body, html {
 }
 
 .cta-banner h2 {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
   font-size: 2rem;
   margin: 0;
 }

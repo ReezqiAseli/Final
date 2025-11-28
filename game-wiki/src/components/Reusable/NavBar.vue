@@ -32,13 +32,14 @@ const links = [
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
   background: radial-gradient(circle at top left, #000000 0%, #050a14 40%, #2c3e50 100%);
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Finger Paint', cursive;
   position: sticky;
   top: 0;
   z-index: 50;
