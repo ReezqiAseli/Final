@@ -1,52 +1,57 @@
 <template>
-  <div class="app-container">
-    <main class="content">
-      <div class="header-text">
-        <h1>Characters</h1>
-        <p>See all available Characters in Jujutsu Shenanigans</p>
+  <div class="min-h-screen flex flex-col font-['Finger_Paint'] text-white bg-[radial-gradient(circle_at_top_left,#005c57_0%,#050a14_40%,#2c3e50_100%)]">
+    
+    <main class="flex-1 w-full max-w-7xl mx-auto px-5 py-10 flex flex-col items-center box-border">
+      
+      <div class="text-center mb-8">
+        <h1 class="text-5xl md:text-6xl">Characters</h1>
+        <p class="text-lg md:text-xl mt-2 opacity-80">See all available Characters in Jujutsu Shenanigans</p>
       </div>
 
-      <div class="controls-container">
-        <div class="search-wrapper">
-          <span class="search-icon">🔍</span>
+      <div class="flex flex-col items-center gap-5 mb-10 w-full">
+        <div class="relative w-full max-w-md">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 opacity-50 text-lg">🔍</span>
           <input 
             type="text" 
             v-model="searchQuery" 
             placeholder="Search Characters..." 
-            class="search-input"
+            class="w-full py-3 pl-10 pr-4 rounded-full border border-slate-700 bg-[#050a14] text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
           />
         </div>
 
-        <div class="filter-tags">
-          <button 
-            v-for="filter in filters" 
+        <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5">
+          <FilterButton
+            v-for="filter in filters"
             :key="filter"
+            :label="filter"
+            :active="activeFilter === filter"
+            size="md"
             @click="activeFilter = filter"
-            :class="['filter-btn', { active: activeFilter === filter }]"
-          >
-            {{ filter }}
-          </button>
+          />
         </div>
       </div>
 
-      <div class="grid-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
         <div 
-          class="character-card"
+          class="group relative bg-[#0d141e] border border-slate-800 rounded-xl p-4 flex flex-col gap-4 cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500"
           v-for="(char, index) in filteredCharacters"
           :key="index"
           @click="openCharacterModal(char)"
         >
-          <div class="card-image-wrapper">
-            <div class="img-placeholder" :style="{ backgroundColor: char.color + '20' }">
-              <img :src="char.image" :alt="`${char.name} portrait`" class="char-img" />
+          <div class="w-full aspect-video bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center">
+            <div class="w-full h-full flex items-center justify-center transition-colors" :style="{ backgroundColor: char.color + '20' }">
+              <img :src="char.image" :alt="`${char.name} portrait`" class="w-full h-full object-cover" />
             </div>
-            </div>
+          </div>
           
-          <div class="card-info">
-            <h2 :style="{ color: char.color }">
-              <span class="icon-marker">Asset</span> {{ char.name }}
+          <div class="flex flex-col gap-1">
+            <h2 class="text-2xl flex items-center gap-2" :style="{ color: char.color }">
+              <svg viewBox="0 0 24 24" class="w-3 h-3 fill-current">
+                <path d="M12 2L2 22h20L12 2z"/>
+              </svg>
+              {{ char.name }}
             </h2>
-            <p class="desc-text">Explore all available characters with unique abilities and playstyles</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Explore all available characters with unique abilities and playstyles</p>
           </div>
         </div>
       </div>
@@ -54,54 +59,80 @@
 
     <div 
       v-if="selectedCharacter" 
-      class="character-modal-overlay"
+      class="fixed inset-0 bg-black/70 flex justify-center items-center p-5 z-50 backdrop-blur-sm"
       @click="closeCharacterModal"
     >
-      <div class="character-modal" @click.stop>
-        <button class="modal-close" @click="closeCharacterModal">×</button>
+      <div class="bg-[#0b111a] border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] p-6 md:p-8 relative overflow-y-auto scrollbar-hide" @click.stop>
+        <button class="absolute top-3 right-3 text-white text-2xl hover:text-emerald-500 transition-colors" @click="closeCharacterModal">×</button>
 
-        <div class="modal-header">
-          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="modal-image" />
-          <div class="modal-text">
-            <p class="modal-type">{{ selectedCharacter.type }}</p>
-            <h2>{{ selectedCharacter.name }}</h2>
+        <div class="flex flex-col md:flex-row gap-5 items-start md:items-center mb-6">
+          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="w-28 h-28 object-cover rounded-xl border-2 border-slate-800" />
+          <div>
+            <p class="uppercase tracking-widest text-xs opacity-70 mb-1">{{ selectedCharacter.type }}</p>
+            <h2 class="text-3xl md:text-4xl text-white">{{ selectedCharacter.name }}</h2>
           </div>
         </div>
 
-        <div class="modal-skills">
-          <h3>Skill Loadout</h3>
-          <div class="skill-tabs">
+        <div>
+          <h3 class="text-xl mb-3">Skill Loadout</h3>
+          
+          <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
             <button
               v-for="category in skillCategories"
               :key="category.key"
-              :class="['skill-tab', { active: activeSkillCategory === category.key }]"
+              :class="[
+                'flex-1 border py-2 px-3 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200',
+                activeSkillCategory === category.key 
+                  ? 'bg-emerald-500 text-slate-900 border-emerald-500' 
+                  : 'bg-transparent text-slate-300 border-slate-700 hover:border-slate-500'
+              ]"
               @click="setSkillCategory(category.key)"
             >
               {{ category.label }}
             </button>
           </div>
-          <ul>
+
+          <ul class="space-y-3">
             <li 
               v-for="skill in currentSkills" 
               :key="skill.name"
+              class="bg-slate-900 border border-slate-800 rounded-xl p-3 md:p-4"
             >
-              <button class="skill-toggle" @click="toggleSkill(skill.name)">
-                <div>
-                  <span class="skill-pill">{{ skill.name }}</span>
-                  <p>{{ skill.desc }}</p>
+              <button class="w-full flex justify-between items-center text-left group" @click="toggleSkill(skill.name)">
+                <div class="pr-4">
+                  <span class="inline-block font-bold text-emerald-500 mb-1">{{ skill.name }}</span>
+                  <p class="text-slate-300 text-sm leading-relaxed">{{ skill.desc }}</p>
                 </div>
-                <span class="chevron" :class="{ open: activeSkill === skill.name }">⌄</span>
+                <span 
+                  class="text-xl text-slate-300 transition-transform duration-200"
+                  :class="{ 'rotate-180': activeSkill === skill.name }"
+                >⌄</span>
               </button>
-              <transition name="fade-slide">
-                <div v-if="activeSkill === skill.name" class="skill-preview-card">
-                  <img :src="skill.preview" :alt="`${skill.name}`" />
-                  <video autoplay loop muted playsinline class="skill-preview-video">
+              
+              <transition
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="opacity-0 -translate-y-2"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition duration-150 ease-in"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 -translate-y-2"
+              >
+                <div v-if="activeSkill === skill.name" class="mt-4 border border-slate-700 rounded-xl p-2 bg-[#0b111a]">
+                  <video 
+                    v-if="skill.preview.endsWith('.mp4')"
+                    autoplay loop muted playsinline 
+                    class="w-full rounded-lg object-cover"
+                  >
                     <source :src="skill.preview" type="video/mp4"/>
                   </video>
+                  <img v-else :src="skill.preview" :alt="skill.name" class="w-full rounded-lg object-cover" />
                 </div>
               </transition>
             </li>
-            <li v-if="!currentSkills.length" class="empty-skills">Belum ada skill di kategori ini.</li>
+            
+            <li v-if="!currentSkills.length" class="p-5 text-center text-slate-500 border border-dashed border-slate-700 rounded-xl italic">
+              Belum ada skill di kategori ini.
+            </li>
           </ul>
         </div>
       </div>
@@ -114,6 +145,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import Footer from '@/components/Reusable/Footer.vue';
+import FilterButton from '@/components/Reusable/FilterButton.vue';
 import gojoImg from '@/assets/img/Gojo.png';
 import yujiImg from '@/assets/img/Yuji.png';
 import megumiImg from '@/assets/img/Megumi.png';
@@ -124,7 +156,7 @@ import mechamaruImg from '@/assets/img/Mechamaru.png';
 import chosoImg from '@/assets/img/Choso.png';
 import mahitoImg from '@/assets/img/Mahito.png';
 import captionGifs from '@/assets/img/gifs/caption.gif';
-import LapseBlueGif from '@/assets/img/gifs/CelestiaSus.mp4';
+import LapseBlueGif from '@/assets/img/gifs/LapseBlue25.gif';
 
 const searchQuery = ref('');
 const activeFilter = ref('All');
@@ -386,416 +418,7 @@ const currentSkills = computed(() => {
 });
 </script>
 
-<style scoped>
+<style>
+/* Hanya untuk import font, sisa styling sudah pindah ke kelas Tailwind di template */
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
-
-/* --- Global Layout (Mewarisi style Home) --- */
-.app-container {
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, #005c57 0%, #050a14 40%, #2c3e50 100%);
-  color: white;
-  font-family: 'Finger Paint', cursive;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex: 1;
-  padding: 40px 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-/* --- Header --- */
-.header-text {
-  text-align: center;
-  margin-bottom: 30px;
-  font-family: 'Finger Paint', cursive;
-}
-
-.header-text h1 {
-  font-size: 3.5rem;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(255,255,255,0.1);
-}
-
-.header-text p {
-  font-size: 1.2rem;
-  margin-top: 5px;
-  opacity: 0.8;
-  font-family: 'Finger Paint', cursive;
-}
-
-/* --- Controls (Search & Filter) --- */
-.controls-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-  width: 100%;
-}
-
-.search-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.5;
-}
-
-.search-input {
-  width: 100%;
-  padding: 12px 15px 12px 40px;
-  border-radius: 25px;
-  border: 1px solid #2c3e50;
-  background: #050a14;
-  color: white;
-  font-family: 'Finger Paint', cursive;
-  font-size: 0.95rem;
-  box-sizing: border-box; /* Penting agar padding tidak merusak width */
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #00b894;
-}
-
-.filter-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.filter-btn {
-  background: transparent;
-  border: 1px solid #2c3e50;
-  color: #aaa;
-  padding: 6px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-family: 'Finger Paint', cursive;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-}
-
-.filter-btn:hover {
-  border-color: #00b894;
-  color: white;
-}
-
-.filter-btn.active {
-  background: #00b894; /* Warna Teal sesuai tombol 'All' di gambar */
-  border-color: #00b894;
-  color: #050a14;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
-}
-
-/* --- Grid System (Updated to 3 columns) --- */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 Kolom sesuai gambar */
-  gap: 20px;
-  width: 100%;
-}
-
-/* --- Character Card Styling --- */
-.character-card {
-  background: #0d141e; /* Warna kartu gelap */
-  border: 1px solid #1f2f3f;
-  border-radius: 12px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column; /* Layout vertikal: Gambar atas, Teks bawah */
-  gap: 15px;
-  transition: transform 0.2s, border-color 0.2s;
-  cursor: pointer;
-}
-
-.character-card:hover {
-  transform: translateY(-5px);
-  border-color: #00b894;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.card-image-wrapper {
-  width: 100%;
-  aspect-ratio: 16/9; /* Rasio gambar */
-  background: #151d29;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.char-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-info h2 {
-  font-family: 'Finger Paint', cursive;
-  font-size: 1.4rem;
-  margin: 0 0 5px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Icon kecil di sebelah nama (titik warna/icon) */
-.icon-marker {
-  font-size: 0; /* Hide text "Asset" */
-  width: 12px;
-  height: 12px;
-  display: inline-block;
-  background-color: currentColor; /* Mengikut warna text parent */
-  /* Bentuk icon custom bisa disini */
-  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 22h20L12 2z"/></svg>') no-repeat center / contain;
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 22h20L12 2z"/></svg>') no-repeat center / contain;
-  background-color: currentColor;
-}
-
-.desc-text {
-  font-size: 0.8rem;
-  color: #8a9bb0;
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* --- Character Modal --- */
-.character-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  z-index: 100;
-}
-
-.character-modal {
-  background: #0b111a;
-  border: 1px solid #1f2f3f;
-  border-radius: 16px;
-  width: min(90vw, 600px);
-  max-height: 90vh;
-  padding: 30px;
-  position: relative;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
-}
-
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.modal-header {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.modal-text h2 {
-  margin: 5px 0 0 0;
-}
-
-.modal-image {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid #1f2f3f;
-}
-
-.modal-type {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-bottom: 5px;
-}
-
-.modal-skills h3 {
-  margin: 0 0 10px 0;
-  font-family: 'Finger Paint', cursive;
-}
-
-.skill-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.skill-tab {
-  flex: 1;
-  border: 1px solid #2c3e50;
-  background: transparent;
-  color: #cfd6e6;
-  padding: 8px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.skill-tab.active {
-  background: #00b894;
-  color: #050a14;
-  border-color: #00b894;
-}
-
-.modal-skills ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.empty-skills {
-  padding: 20px;
-  text-align: center;
-  color: #8a9bb0;
-  border: 1px dashed #2c3e50;
-  border-radius: 12px;
-  font-style: italic;
-}
-
-.modal-skills li {
-  background: #101827;
-  border: 1px solid #1f2f3f;
-  border-radius: 12px;
-  padding: 12px 16px;
-}
-
-.skill-toggle {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: inherit;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  padding: 0;
-  cursor: pointer;
-}
-
-.skill-toggle:focus-visible {
-  outline: 2px solid #00b894;
-  border-radius: 8px;
-}
-
-.chevron {
-  font-size: 1.2rem;
-  transition: transform 0.2s ease;
-  color: #cfd6e6;
-}
-
-.chevron.open {
-  transform: rotate(180deg);
-}
-
-.skill-pill {
-  display: inline-block;
-  font-weight: 700;
-  color: #00b894;
-  margin-bottom: 6px;
-}
-
-.modal-skills p {
-  margin: 0;
-  color: #cfd6e6;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.skill-preview-card {
-  margin-top: 12px;
-  border: 1px solid #2c3e50;
-  border-radius: 12px;
-  padding: 10px;
-  background: #0b111a;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.skill-preview-card img {
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 8px;
-}
-
-.preview-label {
-  display: block;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #00b894;
-}
-
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-5px);
-}
-
-@media (max-width: 700px) {
-  .modal-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
-  .header-text h1 { font-size: 2.5rem; }
-}
 </style>

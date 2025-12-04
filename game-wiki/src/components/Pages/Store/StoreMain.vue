@@ -9,14 +9,14 @@
 
       <nav class="tabs-nav">
         <div class="tabs-container">
-          <button 
-            v-for="tab in tabItems" 
+          <FilterButton
+            v-for="tab in tabItems"
             :key="tab.id"
+            :label="tab.label"
+            :active="activeTab === tab.id"
+            size="lg"
             @click="activeTab = tab.id"
-            :class="['tab-btn', { active: activeTab === tab.id }]"
-          >
-            {{ tab.label }}
-          </button>
+          />
         </div>
       </nav>
 
@@ -56,6 +56,21 @@
                 </p>
               </div>
             </div>
+
+            <div class="offers-grid">
+              <div
+                v-for="offer in shopItems"
+                :key="offer.title"
+                class="offer-card"
+              >
+                <div class="offer-headline">
+                  <span class="offer-tag">{{ offer.category }}</span>
+                  <span class="offer-price">{{ offer.price }}</span>
+                </div>
+                <h4>{{ offer.title }}</h4>
+                <p>{{ offer.desc }}</p>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -73,6 +88,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import captionGifs from '@/assets/img/gifs/caption.gif';
+import FilterButton from '@/components/Reusable/FilterButton.vue';
 // State untuk Tab Aktif
 const activeTab = ref('shop');
 
@@ -82,6 +98,7 @@ const tabItems = [
   { id: 'merch', label: 'Merch' },
   { id: 'rewards', label: 'Rewards' },
 ];
+
 
 // Computed untuk mendapatkan label tab yang sedang aktif (untuk placeholder)
 const activeTabLabel = computed(() => {
@@ -124,7 +141,6 @@ const activeTabLabel = computed(() => {
   font-size: 4rem;
   margin: 0;
   line-height: 1.2;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .header-section p {
@@ -151,29 +167,6 @@ const activeTabLabel = computed(() => {
   border-radius: 40px;
 }
 
-.tab-btn {
-  background: transparent;
-  border: 2px solid rgba(0, 187, 166, 0.2);
-  color: white;
-  padding: 8px 30px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-family: 'Finger Paint', cursive;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  min-width: 120px;
-}
-
-.tab-btn:hover {
-  border-color: #009689;
-}
-
-.tab-btn.active {
-  background-color: #009689;
-  border-color: #009689;
-  box-shadow: 0 0 15px rgba(0, 150, 137, 0.4);
-}
-
 /* --- Content Card --- */
 .store-content {
   width: 100%;
@@ -188,7 +181,6 @@ const activeTabLabel = computed(() => {
   border: 2px solid rgba(0, 187, 166, 0.2);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .card-header h2 {
@@ -213,7 +205,6 @@ const activeTabLabel = computed(() => {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .shop-image {
@@ -242,6 +233,58 @@ const activeTabLabel = computed(() => {
   line-height: 1.6;
   color: #e0e0e0;
   margin: 0;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.offer-card {
+  background: rgba(5, 10, 20, 0.7);
+  border: 1px solid rgba(0, 184, 148, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.offer-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.offer-tag {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #00bba6;
+}
+
+.offer-price {
+  font-weight: 700;
+  color: #f1c40f;
+}
+
+.offer-card h4 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.offer-card p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  color: #d6d8df;
+  margin: 0;
+}
+
+.empty-offers {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #9ba5c4;
+  font-style: italic;
 }
 
 .empty-state {

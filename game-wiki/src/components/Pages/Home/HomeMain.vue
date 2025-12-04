@@ -1,27 +1,40 @@
 <template>
-  <div class="app-container">
-    <main class="content">
-      <div class="header-text">
-        <h1>Jujutsu Shenanigans</h1>
-        <p>Guide or Something IDK</p>
+  <div class="min-h-screen flex flex-col font-['Finger_Paint'] text-white bg-[radial-gradient(circle_at_top_left,#005c57_0%,#050a14_40%,#2c3e50_100%)]">
+    
+    <main class="flex-1 flex flex-col items-center px-[10%] py-5">
+      
+      <div class="text-center mb-[50px]">
+        <h1 class="text-[2.5rem] md:text-[4rem] m-0">
+          Jujutsu Shenanigans
+        </h1>
+        <p class="text-2xl md:text-[1.5rem] mt-2.5 opacity-80">
+          Guide or Something IDK
+        </p>
       </div>
 
-      <div class="grid-container">
-        <div class="card" v-for="(item, index) in cards" :key="index">
-          <div class="card-image-placeholder">
-            <img :src="item.icon" :alt="`${item.title} icon`" class="card-image" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-[1000px] mb-10">
+        <div 
+          class="group flex items-center gap-5 bg-[#0d141e]/80 border border-[#1f2f3f] rounded-[15px] p-5 transition-transform duration-200 hover:-translate-y-1.5 hover:border-[#00b894] cursor-default"
+          v-for="(item, index) in cards" 
+          :key="index"
+        >
+          <div class="w-20 h-20 rounded-[10px] overflow-hidden flex-shrink-0">
+            <img :src="item.icon" :alt="`${item.title} icon`" class="w-full h-full object-cover block" />
           </div>
-          <div class="card-content">
-            <h2>{{ item.title }}</h2>
-            <p>{{ item.desc }}</p>
+          
+          <div>
+            <h2 class="text-[2rem] mb-1.5">{{ item.title }}</h2>
+            <p class="text-sm opacity-70 leading-snug">{{ item.desc }}</p>
           </div>
         </div>
       </div>
 
-      <div class="cta-banner">
-        <h2>ts game so peak go play it</h2>
+      <div class="w-full max-w-[1000px] bg-gradient-to-r from-[#0f2040] to-[#2c3e60] p-10 rounded-[15px] text-center mb-[50px] border border-[#3e5e80]">
+        <h2 class="text-[2rem] m-0">ts game so peak go play it</h2>
       </div>
+
     </main>
+
     <Footer/>
   </div>
 </template>
@@ -42,128 +55,6 @@ const cards = [
 </script>
 
 <style>
+/* Kita tetap perlu import font karena Tailwind tidak otomatis mengunduh font Google */
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.app-container {
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, #005c57 0%, #050a14 40%, #2c3e50 100%);
-  color: white;
-  font-family: 'Finger Paint', cursive;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex: 1;
-  padding: 20px 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header-text {
-  text-align: center;
-  margin-bottom: 50px;
-  font-family: 'Finger Paint', cursive;
-} 
-
-.header-text h1 {
-  font-size: 4rem;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.header-text p {
-  font-size: 1.5rem;
-  margin-top: 10px;
-  opacity: 0.8;
-}
-
-/* Grid System */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  width: 100%;
-  max-width: 1000px;
-  margin-bottom: 40px;
-}
-
-.card {
-  background: rgba(13, 20, 30, 0.8);
-  border: 1px solid #1f2f3f;
-  border-radius: 15px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: transform 0.2s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: #00b894;
-}
-
-.card-image-placeholder {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
-}
-
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.card-content h2 {
-  font-family: 'Finger Paint', cursive;
-  font-size: 2rem;
-  margin: 0 0 5px 0;
-}
-
-.card-content p {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.cta-banner {
-  width: 100%;
-  max-width: 1000px;
-  background: linear-gradient(to right, #0f2040, #2c3e60);
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
-  margin-bottom: 50px;
-  border: 1px solid #3e5e80;
-}
-
-.cta-banner h2 {
-  font-family: 'Finger Paint', cursive;
-  font-size: 2rem;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .header-text h1 {
-    font-size: 2.5rem;
-  }
-}
 </style>
