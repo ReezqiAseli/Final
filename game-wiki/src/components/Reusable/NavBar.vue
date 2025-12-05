@@ -1,15 +1,21 @@
 <template>
-  <nav class="navbar">
-    <div class="logo-container">
-      <img src="@/assets/img/Miwa.png" alt="Logo" class="logo" />
+  <nav class="sticky top-0 z-50 w-full flex justify-between items-center px-6 md:px-[50px] py-5 font-['Finger_Paint'] bg-[#050f1f] shadow-md">
+    
+    <div class="flex-shrink-0">
+      <img src="@/assets/img/Miwa.png" alt="Logo" class="w-[50px] h-[50px] bg-black rounded-lg object-cover" />
     </div>
 
-    <div class="nav-links">
+    <div class="flex gap-5 overflow-x-auto">
       <router-link 
         v-for="link in links" 
         :key="link.name"
         :to="link.path"
-        :class="['nav-item', { active: route.name === link.name }]"
+        class="px-5 py-2 rounded-[20px] text-[1.1rem] transition-all duration-300 whitespace-nowrap"
+        :class="[
+          route.name === link.name 
+            ? 'bg-[#00b894] text-black' 
+            : 'text-white hover:text-[#00b894]'
+        ]"
       >
         {{ link.name }}
       </router-link>
@@ -31,50 +37,7 @@ const links = [
 ];
 </script>
 
-<style scoped>
+<style>
+/* Font import tetap diperlukan */
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: radial-gradient(circle at top left, #000000 0%, #050a14 40%, #2c3e50 100%);
-  font-family: 'Finger Paint', cursive;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  width: 100%;
-}
-
-.logo {
-  width: 50px;
-  height: 50px;
-  background: #000;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: white;
-  font-size: 1.1rem;
-  padding: 8px 20px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-}
-
-.nav-item.active {
-  background-color: #00b894;
-  color: #000;
-}
-
-.nav-item:hover:not(.active) {
-  color: #00b894;
-}
 </style>

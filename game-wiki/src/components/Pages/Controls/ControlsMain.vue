@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen w-full flex flex-col font-['Finger_Paint'] text-white bg-[radial-gradient(circle_at_top_left,#005c57_0%,#050a14_40%,#2c3e50_100%)]">
+  <div class="page-shell page-bg-controls min-h-screen w-full flex flex-col font-['Finger_Paint'] text-white">
     
     <main class="flex-1 w-full max-w-[1400px] mx-auto pt-[100px] px-5 pb-10 flex flex-col items-center gap-5">
       
@@ -24,8 +24,8 @@
       <section class="w-full flex justify-center">
         <div class="w-full max-w-[1100px]">
           
-          <article class="min-h-[600px] bg-[linear-gradient(127deg,rgba(3,7,18,0.95)_0%,rgba(20,47,120,0.95)_100%)] border-2 border-[#00bba6]/20 rounded-[20px] p-6 md:p-[50px]">
-            <h2 class="text-3xl md:text-4xl mt-0 mb-8 pb-5 text-center border-b border-white/10">{{ currentContent.title }}</h2>
+          <article class="min-h-[600px] bg-slate-900 border-2 border-emerald-500 rounded-[20px] p-6 md:p-[50px]">
+            <h2 class="text-3xl md:text-4xl mt-0 mb-8 pb-5 text-center border-b border-emerald-500">{{ currentContent.title }}</h2>
 
             <div class="card-body">
               <div class="flex flex-col gap-5">

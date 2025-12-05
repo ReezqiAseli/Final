@@ -1,73 +1,75 @@
 <template>
-  <div class="min-h-screen flex justify-center text-white font-sans bg-[radial-gradient(circle_at_top_left,#005c57_0%,#050a14_40%,#2c3e50_100%)]">
+  <div class="page-shell page-bg-counters min-h-screen flex justify-center text-white font-sans">
     
-    <main class="w-full max-w-7xl py-20 px-5 flex flex-col items-center gap-10">
-      
-      <header class="text-center">
-        <h1 class="font-['Finger_Paint'] text-5xl md:text-6xl m-0">Counter Guide</h1>
-        <p class="text-lg md:text-xl opacity-80 mt-2">Learn the best responses to every cursed technique</p>
-      </header>
+    <main class="w-full max-w-7xl py-20 px-5 flex flex-col items-center">
+      <article class="w-full bg-slate-900/80 border-2 border-emerald-500 rounded-[20px] p-6 md:p-10 flex flex-col items-center gap-10">
+        <header class="text-center w-full">
+          <h1 class="font-['Finger_Paint'] text-5xl md:text-6xl m-0">Counter Guide</h1>
+          <p class="text-lg md:text-xl opacity-80 mt-2">Learn the best responses to every cursed technique</p>
+        </header>
 
-      <section class="text-center w-full">
-        <h3 class="font-['Finger_Paint'] text-xl text-[#00bba6] mb-5">Select Your Character:</h3>
-        
-        <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5">
-          <FilterButton
-            v-for="char in characters"
-            :key="char.id"
-            size="lg"
-            :active="selectedChar.id === char.id"
-            @click="selectedChar = char"
-            :title="char.name"
-          >
-            <span class="font-['Finger_Paint'] text-base">
-              {{ char.name }}
-            </span>
-          </FilterButton>
+        <section class="text-center w-full">
+          <h3 class="font-['Finger_Paint'] text-xl text-[#00bba6] mb-5">Select Your Character:</h3>
+          
+          <div class="flex justify-center w-full">
+            <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5">
+              <FilterButton
+                v-for="char in characters"
+                :key="char.id"
+                size="lg"
+                :active="selectedChar.id === char.id"
+                @click="selectedChar = char"
+                :title="char.name"
+              >
+                <span class="font-['Finger_Paint'] text-base">
+                  {{ char.name }}
+                </span>
+              </FilterButton>
+            </div>
+            </div>
+        </section>
+
+        <div class="py-2 px-8 border-b border-emerald-500 w-full text-center">
+          <span class="font-['Finger_Paint'] text-2xl text-gray-200">Playing as {{ selectedChar.name }}</span>
         </div>
-      </section>
 
-      <div class="py-2 px-8 border-b border-white/10">
-        <span class="font-['Finger_Paint'] text-2xl text-gray-200">Playing as {{ selectedChar.name }}</span>
-      </div>
-
-      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        <div 
-          v-for="(matchup, index) in currentMatchups" 
-          :key="index" 
-          class="bg-[#0d141e]/80 border border-slate-700 rounded-xl p-6 transition-colors duration-200 hover:border-[#00bba6]"
-        >
-          <div class="flex items-center gap-4 mb-4 border-b border-white/5 pb-4">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shrink-0" :style="{ backgroundColor: matchup.color }">
-              <img :src="matchup.img" :alt="matchup.name + ' icon'" class="w-full h-full object-cover" />
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <div 
+            v-for="(matchup, index) in currentMatchups" 
+            :key="index" 
+            class="bg-[#0d141e]/80 border border-slate-700 rounded-xl p-6 transition-colors duration-200 hover:border-[#00bba6]"
+          >
+            <div class="flex items-center gap-4 mb-4 border-b border-white/5 pb-4">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shrink-0" :style="{ backgroundColor: matchup.color }">
+                <img :src="matchup.img" :alt="matchup.name + ' icon'" class="w-full h-full object-cover" />
+              </div>
+              
+              <div class="flex flex-col items-start">
+                <h4 class="font-['Finger_Paint'] text-lg mb-1">VS. {{ matchup.name }}</h4>
+                
+                <span 
+                  class="text-xs font-bold uppercase px-3 py-1 rounded-full"
+                  :class="{
+                    'bg-emerald-500/20 text-emerald-500': matchup.difficulty === 'Easy',
+                    'bg-yellow-500/20 text-yellow-500': matchup.difficulty === 'Medium',
+                    'bg-red-500/20 text-red-500': matchup.difficulty === 'Hard'
+                  }"
+                >
+                  {{ matchup.difficulty }}
+                </span>
+              </div>
             </div>
             
-            <div class="flex flex-col items-start">
-              <h4 class="font-['Finger_Paint'] text-lg mb-1">VS. {{ matchup.name }}</h4>
-              
-              <span 
-                class="text-xs font-bold uppercase px-3 py-1 rounded-full"
-                :class="{
-                  'bg-emerald-500/20 text-emerald-500': matchup.difficulty === 'Easy',
-                  'bg-yellow-500/20 text-yellow-500': matchup.difficulty === 'Medium',
-                  'bg-red-500/20 text-red-500': matchup.difficulty === 'Hard'
-                }"
-              >
-                {{ matchup.difficulty }}
-              </span>
+            <div>
+              <p class="text-slate-400 leading-relaxed text-base">{{ matchup.tip }}</p>
             </div>
           </div>
-          
-          <div>
-            <p class="text-slate-400 leading-relaxed text-base">{{ matchup.tip }}</p>
+
+          <div v-if="currentMatchups.length === 0" class="col-span-full text-center py-10 text-slate-500 italic">
+            <p>Select a character to see counter strategies.</p>
           </div>
-        </div>
-
-        <div v-if="currentMatchups.length === 0" class="col-span-full text-center py-10 text-slate-500 italic">
-          <p>Select a character to see counter strategies.</p>
-        </div>
-      </section>
-
+        </section>
+      </article>
     </main>
   </div>
 </template>

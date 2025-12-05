@@ -1,1 +1,57 @@
 @import 'tailwindcss';
+
+.page-shell {
+	position: relative;
+	min-height: 100vh;
+	background-color: #050f1f;
+	isolation: isolate;
+}
+
+.page-bg-home {
+	background-color: #0f2c4a;
+	background-size: 160px 160px;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+.page-bg-characters {
+	background-color: #0f2c4a;
+	background-size: 160px 160px;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+.page-bg-counters {
+	background-color: #0f2c4a;
+	background-size: 160px 160px;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+.page-bg-store {
+	background-color: #0f2c4a;
+	background-size: 160px 160px;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+.page-bg-controls {
+	background-color: #0f2c4a;
+	background-size: 160px 160px;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+html, body {
+  overscroll-behavior: none;
+  height: 100%;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* Untuk Internet Explorer dan Edge lama */
+    scrollbar-width: none;  /* Untuk Firefox */
+}

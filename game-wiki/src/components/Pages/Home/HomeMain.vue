@@ -1,38 +1,38 @@
 <template>
-  <div class="min-h-screen flex flex-col font-['Finger_Paint'] text-white bg-[radial-gradient(circle_at_top_left,#005c57_0%,#050a14_40%,#2c3e50_100%)]">
+  <div class="page-shell page-bg-home min-h-screen flex flex-col font-['Finger_Paint'] text-white">
     
     <main class="flex-1 flex flex-col items-center px-[10%] py-5">
-      
-      <div class="text-center mb-[50px]">
-        <h1 class="text-[2.5rem] md:text-[4rem] m-0">
-          Jujutsu Shenanigans
-        </h1>
-        <p class="text-2xl md:text-[1.5rem] mt-2.5 opacity-80">
-          Guide or Something IDK
-        </p>
-      </div>
+      <article class="w-full max-w-[1100px] min-h-[600px] bg-slate-900/80 border-2 border-emerald-500 rounded-[20px] p-6 md:p-10 flex flex-col items-center gap-10">
+        <div class="text-center">
+          <h1 class="text-[2.5rem] md:text-[4rem] m-0">
+            Jujutsu Shenanigans
+          </h1>
+          <p class="text-2xl md:text-[1.5rem] mt-2.5 opacity-80">
+            Guide or Something IDK
+          </p>
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-[1000px] mb-10">
-        <div 
-          class="group flex items-center gap-5 bg-[#0d141e]/80 border border-[#1f2f3f] rounded-[15px] p-5 transition-transform duration-200 hover:-translate-y-1.5 hover:border-[#00b894] cursor-default"
-          v-for="(item, index) in cards" 
-          :key="index"
-        >
-          <div class="w-20 h-20 rounded-[10px] overflow-hidden flex-shrink-0">
-            <img :src="item.icon" :alt="`${item.title} icon`" class="w-full h-full object-cover block" />
-          </div>
-          
-          <div>
-            <h2 class="text-[2rem] mb-1.5">{{ item.title }}</h2>
-            <p class="text-sm opacity-70 leading-snug">{{ item.desc }}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+          <div 
+            class="group flex items-center gap-5 bg-[#0d141e]/80 border border-[#1f2f3f] rounded-[15px] p-5 transition-transform duration-200 hover:-translate-y-1.5 hover:border-[#00b894] cursor-default"
+            v-for="(item, index) in cards" 
+            :key="index"
+          >
+            <div class="w-20 h-20 rounded-[10px] overflow-hidden flex-shrink-0">
+              <img :src="item.icon" :alt="`${item.title} icon`" class="w-full h-full object-cover block" />
+            </div>
+            
+            <div>
+              <h2 class="text-[2rem] mb-1.5">{{ item.title }}</h2>
+              <p class="text-sm opacity-70 leading-snug">{{ item.desc }}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="w-full max-w-[1000px] bg-gradient-to-r from-[#0f2040] to-[#2c3e60] p-10 rounded-[15px] text-center mb-[50px] border border-[#3e5e80]">
-        <h2 class="text-[2rem] m-0">ts game so peak go play it</h2>
-      </div>
-
+        <div class="w-full bg-gradient-to-r from-[#0f2040] to-[#2c3e60] p-10 rounded-[15px] text-center border border-[#3e5e80]">
+          <h2 class="text-[2rem] m-0">ts game so peak go play it</h2>
+        </div>
+      </article>
     </main>
 
     <Footer/>
