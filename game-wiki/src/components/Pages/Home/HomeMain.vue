@@ -1,13 +1,13 @@
 <template>
   <div class="page-shell page-bg-home min-h-screen flex flex-col font-['Finger_Paint'] text-white">
     
-    <main class="flex-1 flex flex-col items-center px-[10%] py-5">
-      <article class="w-full max-w-[1100px] min-h-[600px] bg-slate-900/80 border-2 border-emerald-500 rounded-[20px] p-6 md:p-10 flex flex-col items-center gap-10">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
+      <PageWrap class="w-full max-w-[1100px] min-h-[600px] flex flex-col items-center gap-8">
         <div class="text-center">
-          <h1 class="text-[2.5rem] md:text-[4rem] m-0">
+          <h1 class="text-4xl md:text-6xl m-0">
             Jujutsu Shenanigans
           </h1>
-          <p class="text-2xl md:text-[1.5rem] mt-2.5 opacity-80">
+          <p class="text-xl md:text-2xl mt-2.5 opacity-80">
             Guide or Something IDK
           </p>
         </div>
@@ -23,16 +23,16 @@
             </div>
             
             <div>
-              <h2 class="text-[2rem] mb-1.5">{{ item.title }}</h2>
+              <h2 class="text-3xl mb-1.5">{{ item.title }}</h2>
               <p class="text-sm opacity-70 leading-snug">{{ item.desc }}</p>
             </div>
           </div>
         </div>
 
         <div class="w-full bg-gradient-to-r from-[#0f2040] to-[#2c3e60] p-10 rounded-[15px] text-center border border-[#3e5e80]">
-          <h2 class="text-[2rem] m-0">ts game so peak go play it</h2>
+          <h2 class="text-3xl m-0">ts game so peak go play it</h2>
         </div>
-      </article>
+      </PageWrap>
     </main>
 
     <Footer/>
@@ -45,6 +45,7 @@ import yujiImg from '@/assets/img/Yuji.png';
 import sukunaImg from '@/assets/img/Sukuna.png';
 import yutaImg from '@/assets/img/Yuta.png';
 import Footer from '@/components/Reusable/Footer.vue';
+import PageWrap from '@/components/Reusable/PageWrap.vue';
 
 const cards = [
   { title: 'Characters', desc: 'Explore all available characters with unique abilities and playstyles', icon: gojoImg },

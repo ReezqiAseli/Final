@@ -1,8 +1,8 @@
 <template>
-  <div class="page-shell page-bg-counters min-h-screen flex justify-center text-white font-sans">
+  <div class="page-shell page-bg-counters min-h-screen flex flex-col items-center font-['Finger_Paint'] text-white">
     
-    <main class="w-full max-w-7xl py-20 px-5 flex flex-col items-center">
-      <article class="w-full bg-slate-900/80 border-2 border-emerald-500 rounded-[20px] p-6 md:p-10 flex flex-col items-center gap-10">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
+      <PageWrap class="flex flex-col items-center gap-8">
         <header class="text-center w-full">
           <h1 class="font-['Finger_Paint'] text-5xl md:text-6xl m-0">Counter Guide</h1>
           <p class="text-lg md:text-xl opacity-80 mt-2">Learn the best responses to every cursed technique</p>
@@ -12,7 +12,7 @@
           <h3 class="font-['Finger_Paint'] text-xl text-[#00bba6] mb-5">Select Your Character:</h3>
           
           <div class="flex justify-center w-full">
-            <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5">
+            <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5 w-fit mx-auto">
               <FilterButton
                 v-for="char in characters"
                 :key="char.id"
@@ -29,8 +29,8 @@
             </div>
         </section>
 
-        <div class="py-2 px-8 border-b border-emerald-500 w-full text-center">
-          <span class="font-['Finger_Paint'] text-2xl text-gray-200">Playing as {{ selectedChar.name }}</span>
+        <div class="py-3 px-8 border-b border-emerald-500 text-center">
+          <span class="text-2xl text-gray-200">Playing as {{ selectedChar.name }}</span>
         </div>
 
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
@@ -69,7 +69,7 @@
             <p>Select a character to see counter strategies.</p>
           </div>
         </section>
-      </article>
+      </PageWrap>
     </main>
   </div>
 </template>
@@ -77,6 +77,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import FilterButton from '@/components/Reusable/FilterButton.vue';
+import PageWrap from '@/components/Reusable/PageWrap.vue';
 import gojoImg from '@/assets/img/Gojo.png';
 import yujiImg from '@/assets/img/Yuji.png';
 import hakariImg from '@/assets/img/Hakari.png';

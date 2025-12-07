@@ -1,8 +1,12 @@
 <template>
   <nav class="sticky top-0 z-50 w-full flex justify-between items-center px-6 md:px-[50px] py-5 font-['Finger_Paint'] bg-[#050f1f] shadow-md">
     
-    <div class="flex-shrink-0">
+    <div class="flex items-center gap-4 flex-shrink-0 cursor-pointer" @click="$router.push('Home')">
       <img src="@/assets/img/Miwa.png" alt="Logo" class="w-[50px] h-[50px] bg-black rounded-lg object-cover" />
+      
+      <span class="text-xl md:text-2xl text-white hover:text-[#00bba6] transition-colors">
+        Jujutsu Shenanigans
+      </span>
     </div>
 
     <div class="flex gap-5 overflow-x-auto">
@@ -38,6 +42,5 @@ const links = [
 </script>
 
 <style>
-/* Font import tetap diperlukan */
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 </style>

@@ -17,7 +17,7 @@
       // State Variants (Active vs Inactive)
       active
         ? 'bg-emerald-500 border-emerald-500 text-[#050a14] font-semibold' 
-        : 'bg-transparent border-white-700 text-gray-400 hover:border-emerald-500 hover:text-white',
+        : 'bg-transparent border-white-700 text-white-400 hover:border-emerald-500',
 
       // Disabled State
       disabled ? 'opacity-50 cursor-not-allowed' : ''

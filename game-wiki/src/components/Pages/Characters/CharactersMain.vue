@@ -1,8 +1,8 @@
 <template>
   <div class="page-shell page-bg-characters min-h-screen flex flex-col font-['Finger_Paint'] text-white">
     
-    <main class="flex-1 w-full max-w-7xl mx-auto px-5 py-10 flex flex-col items-center box-border">
-      <article class="w-full bg-slate-900/80 border-2 border-emerald-500 rounded-[20px] p-6 md:p-10 flex flex-col items-center gap-10">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
+      <PageWrap class="flex flex-col items-center gap-8">
         <div class="text-center">
           <h1 class="text-5xl md:text-6xl">Characters</h1>
           <p class="text-lg md:text-xl mt-2 opacity-80">See all available Characters in Jujutsu Shenanigans</p>
@@ -19,7 +19,7 @@
             />
           </div>
 
-          <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5">
+          <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border w-fit mx-auto border-white/5">
             <FilterButton
               v-for="filter in filters"
               :key="filter"
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-      </article>
+      </PageWrap>
     </main>
 
     <div 
@@ -77,7 +77,7 @@
         <div>
           <h3 class="text-xl mb-3">Skill Loadout</h3>
           
-          <div class="flex flex-wrap justify-center gap-2 bg-black/20 backdrop-blur-sm py-2 px-4 rounded-full border border-white/5 mb-5">
+          <div class="flex flex-wrap justify-center gap-2 bg-black/20 backdrop-blur-sm py-2 px-4 rounded-full w-fit mx-auto border border-white/5 mb-5">
             <FilterButton
               v-for="category in availableSkillCategories"
               :key="category.key"
@@ -158,6 +158,7 @@
 import { ref, computed } from 'vue';
 import Footer from '@/components/Reusable/Footer.vue';
 import FilterButton from '@/components/Reusable/FilterButton.vue';
+import PageWrap from '@/components/Reusable/PageWrap.vue';
 // Characters
 import charlesImg from '@/assets/img/Charles.png';
 import chosoImg from '@/assets/img/Choso.png';
@@ -415,8 +416,18 @@ const characters = [
         { name: 'Fever Breaker', desc: `The player delivers a ranged kick that sends the opponent toward two shutter doors, then follows up with another kick to launch them to an adjustable trajectory by facing its direction before the follow-up. This move can be landed after an uppercut, though the opportunity to do so is brief.`}
       ],
       awakening: [
-        { name: 'Jackpot Loop', desc: 'Instantly reroll the slot machine up to three times.' },
-        { name: 'Infinite Beatdown', desc: 'Lock an enemy in a rhythm minigame to shred their HP.' },
+        { name: 'Jackpot', desc: `Upon a successful scenario, Idle Death Gamble will reward the user with infinite cursed energy, shown by a green aura with music note trails and noted by 2 text boxes near the user:`,
+          subItems: [
+            `If the jackpot was hit in one of the first 3 scenarios, it will last for 100 seconds and the text boxes will read: "In the next 1 minute and 40 seconds..." "...They are effectively immortal."`,
+            `f the pity jackpot was obtained, it will last for 50 seconds and the text boxes will read: "In the next 50 seconds..." "...They are effectively immortal."`,
+          ]
+         },
+        { name: 'Reverse Curse Technique', desc: `The infinite cursed energy provided by the Jackpot state causes the user's body to reflexively employ the "Reverse Cursed Technique", healing them whenever they sustain damage. Essentially, this renders them immortal. However, the Awakening Bar depletes faster each time the user is hit, and the user can still be killed as they only rapid regeneration, not instant healing. The user's M1s will also be changed to use their fists instead of their legs. 
+        If the user survives until their Jackpot ends, they will instantly regain a portion of their awakening starting at 40% and increasing by 25% for each consecutive Jackpot, up to a full restore. Failing to roll a jackpot or dying will reset this bonus.` },
+        { name: 'Lucky Volley', desc: `The user launches a flurry of punches, before then knocking back the enemy with a powerful swipe. Although the barrage is blockable, the final hit isn't.`},
+        { name: 'Lucky Rushdown', desc: `The user sprints forward for a certain period of time. If they run into somebody while sprinting, they will grab and then drag whoever was hit across the floor before throwing them forwards.`},
+        { name: 'Overwhelming Luck', desc: `The user charges up their cursed energy, in order to perform a forward rush and deliver a devastating strike that tosses the target away. They will then proceed to sprint forward, grabbing the target and landing more hits before doing a final punch that sends them flying. This move can hit more than one person at once.`},
+        { name: 'Energy Surge', desc: `The user rapidly charges a short distance at the adversary, propelling them skyward, then swiftly ascends to deliver a mid-air kick, driving the enemy back to the ground. The first hit can propell multiple people, yet only one of them will receive the follow-up kick.`},
       ],
       special: [
         { name: 'Door Guard', desc: `The user protects themselves with two shutter doors. If struck during this, they will punch through the doors, repelling the enemy. However, if hit by a projectile or throwable object, the doors will merely shatter.` },
@@ -432,6 +443,7 @@ const characters = [
           ]
          },
          { name: 'Renewal', desc: `To activate this ability, you must land Reserve Balls on a target while within your domain. Once these conditions are met, using Reverse Balls again will trigger the renewal effect, which returns you and your target to your previous positions while resetting your HP to the state it was back when the Reserve Ball landed, undoing any damage you took before using this ability. You have 8 seconds to trigger this effect once the Reserve Ball lands.`},
+         { name: 'Rhythm', desc: `As the user dances to the music's rhythm, all their move cooldowns get reduced by 0.6 seconds, and they gain a stackable permanent boost in attack speed that affects all their abilities (including this special). If the dance is interrupted, then Rhythm will not grant any buffs.`}
       ],
     },
   },
@@ -648,7 +660,6 @@ characters.forEach(char => {
   char.skillSets = sets;
 });
 
-// Logic Filtering
 const filteredCharacters = computed(() => {
   return characters.filter(char => {
     if (char.isHidden) return false;
