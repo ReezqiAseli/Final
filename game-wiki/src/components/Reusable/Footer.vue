@@ -15,6 +15,6 @@
 </template>
 
 <script setup>
-import discordIcon from '@/assets/img/discord.png';
-import robloxIcon from '@/assets/img/roblox.png';
+import discordIcon from '@/assets/img/Discord.png';
+import robloxIcon from '@/assets/img/Roblox.png';
 </script>
