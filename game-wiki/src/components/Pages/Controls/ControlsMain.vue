@@ -1,17 +1,17 @@
 <template>
   <div class="page-shell page-bg-controls min-h-screen w-full flex flex-col font-['Finger_Paint'] text-white">
     
-    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 flex flex-col items-center gap-6 md:gap-8">
       
-      <PageWrap class="flex flex-col items-center gap-8 w-full">
+      <PageWrap class="flex flex-col items-center gap-6 md:gap-8 w-full">
         
         <header class="text-center w-full">
-          <h1 class="text-5xl md:text-6xl leading-tight m-0">Game Controls</h1>
-          <p class="text-lg md:text-xl mt-2 opacity-90">See the control scheme across PC, Console and Mobile</p>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight m-0">Game Controls</h1>
+          <p class="text-base md:text-lg lg:text-xl mt-2 opacity-90">See the control scheme across PC, Console and Mobile</p>
         </header>
 
         <nav class="flex justify-center w-full">
-          <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full w-fit mx-auto border border-white/5">
+          <div class="flex flex-wrap justify-center gap-2 md:gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-4 md:px-10 rounded-2xl md:rounded-full w-full md:w-fit mx-auto border border-white/5">
             <FilterButton
               v-for="tab in controlTabs"
               :key="tab.id"
@@ -26,8 +26,8 @@
         <section class="w-full flex justify-center">
           <div class="w-full max-w-[1100px]">
             
-            <PageWrap variant="solid" padding="none" class="min-h-[600px] p-6 md:p-[50px]">
-              <h2 class="text-4xl mb-6 pb-3 text-center">
+            <PageWrap variant="solid" padding="none" class="min-h-[600px] p-4 md:p-[50px]">
+              <h2 class="text-2xl md:text-4xl mb-6 pb-3 text-center">
                 <span class="border-b px-6 border-emerald-500">{{ currentContent.title }}</span>
               </h2>
 

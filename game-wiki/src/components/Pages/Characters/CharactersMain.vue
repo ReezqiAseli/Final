@@ -1,25 +1,25 @@
 <template>
   <div class="page-shell page-bg-characters min-h-screen flex flex-col font-['Finger_Paint'] text-white">
     
-    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
-      <PageWrap class="flex flex-col items-center gap-8">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 flex flex-col items-center gap-6 md:gap-8">
+      <PageWrap class="flex flex-col items-center gap-6 md:gap-8">
         <div class="text-center">
-          <h1 class="text-5xl md:text-6xl">Characters</h1>
-          <p class="text-lg md:text-xl mt-2 opacity-80">See all available Characters in Jujutsu Shenanigans</p>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl">Characters</h1>
+          <p class="text-base md:text-lg lg:text-xl mt-2 opacity-80">See all available Characters in Jujutsu Shenanigans</p>
         </div>
 
-        <div class="flex flex-col items-center gap-5 w-full">
+        <div class="flex flex-col items-center gap-4 md:gap-5 w-full">
           <div class="relative w-full max-w-md">
             <span class="absolute left-4 top-1/2 -translate-y-1/2 opacity-50 text-lg">🔍</span>
             <input 
               type="text" 
               v-model="searchQuery" 
               placeholder="Search Characters..." 
-              class="w-full py-3 pl-10 pr-4 rounded-full border border-slate-700 bg-[#050a14] text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+              class="w-full py-3 pl-10 pr-4 rounded-full border border-slate-700 bg-[#050a14] text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm md:text-base"
             />
           </div>
 
-          <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border w-fit mx-auto border-white/5">
+          <div class="flex flex-wrap justify-center gap-2 md:gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-4 md:px-10 rounded-2xl md:rounded-full border w-full md:w-fit mx-auto border-white/5">
             <FilterButton
               v-for="filter in filters"
               :key="filter"
@@ -60,24 +60,27 @@
 
     <div 
       v-if="selectedCharacter" 
-      class="fixed inset-0 bg-black/70 flex justify-center items-start pt-30 p-5 z-50 backdrop-blur-sm"
+      class="fixed inset-0 bg-black/80 flex justify-center items-end md:items-center p-0 md:p-5 z-50 backdrop-blur-sm"
       @click="closeCharacterModal"
     >
-      <div class="bg-[#0f2c4a] border border-slate-800 rounded-2xl w-full max-w-[800px] max-h-[800px] p-6 md:p-6 relative overflow-y-auto scrollbar-hide" @click.stop>
-        <button class="absolute top-3 right-3 text-white text-2xl hover:text-emerald-500 transition-colors" @click="closeCharacterModal">x</button>
+      <div class="bg-[#0f2c4a] border-t md:border border-slate-800 rounded-t-2xl md:rounded-2xl w-full max-w-[800px] h-[85vh] md:h-auto md:max-h-[90vh] p-5 md:p-8 relative overflow-y-auto scrollbar-hide shadow-2xl" @click.stop>
+        <button class="absolute top-4 right-4 text-white/50 text-2xl hover:text-emerald-500 transition-colors z-10 bg-black/20 rounded-full w-8 h-8 flex items-center justify-center" @click="closeCharacterModal">✕</button>
 
-        <div class="flex flex-col md:flex-row gap-5 items-start md:items-center mb-6">
-          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="w-28 h-28 object-cover rounded-xl border-2 border-slate-800" />
-          <div>
-            <p class="uppercase tracking-widest text-xs opacity-70 mb-1">{{ selectedCharacter.type }}</p>
-            <h2 class="text-3xl md:text-4xl text-white">{{ selectedCharacter.name }}</h2>
+        <div class="flex flex-col md:flex-row gap-5 items-center md:items-start mb-6 md:mb-8">
+          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-2xl border-2 border-slate-800 shadow-lg" />
+          <div class="text-center md:text-left">
+            <p class="uppercase tracking-[0.2em] text-xs font-bold text-emerald-400 mb-2">{{ selectedCharacter.type }}</p>
+            <h2 class="text-3xl md:text-5xl text-white font-bold leading-tight">{{ selectedCharacter.name }}</h2>
           </div>
         </div>  
 
         <div>
-          <h3 class="text-xl mb-3">Skill Loadout</h3>
+          <h3 class="text-xl mb-4 font-bold flex items-center gap-2">
+            <span class="w-1 h-6 bg-emerald-500 rounded-full"></span>
+            Skill Loadout
+          </h3>
           
-          <div class="flex flex-wrap justify-center gap-2 bg-black/20 backdrop-blur-sm py-2 px-4 rounded-full w-fit mx-auto border border-white/5 mb-5">
+          <div class="flex flex-wrap justify-center gap-2 bg-black/20 backdrop-blur-sm py-2 px-2 md:px-4 rounded-xl md:rounded-full w-full md:w-fit mx-auto border border-white/5 mb-6">
             <FilterButton
               v-for="category in availableSkillCategories"
               :key="category.key"
@@ -174,8 +177,10 @@ import todoImg from '@/assets/img/Todo.png';
 import yujiImg from '@/assets/img/Yuji.png';
 import yukiImg from '@/assets/img/Yuki.png';
 import yutaImg from '@/assets/img/Yuta.png';
+
 // gifs
 import captionGifs from '@/assets/img/gifs/caption.gif';
+import DomainGojoGifs from '@/assets/img/gifs/DomainExpansionGojo.mp4';
 import LapseBlueGif from '@/assets/img/gifs/LapseBlue25.gif';
 
 const searchQuery = ref('');
@@ -224,7 +229,7 @@ const characters = [
         { name: 'Twofold Kick', desc: 'The user kicks their enemy up, anchoring them in the air, and guaranteeing an unblockable second kick that bounces the target higher given the user is uninterrupted. The first kick grants melee immunity for a short while.'},
       ],
       awakening: [
-        { name: 'Six Eyes', desc: `Once the Awakening is activated, the user removes their blindfold and their eyes start to glow blue while punching their palm, along with the words "Let's get" "...A little crazy".`},
+        { name: 'Six Eyes', desc: `Once the Awakening is activated, the user removes their blindfold and their eyes start to glow blue while punching their palm, along with the words "Let's get" "...A little crazy".`, preview: DomainGojoGifs },
         { name: "0.2 Second Infinite Void", desc: 'By using the special during the Awakening sequence, the player activates an "Alternate Awakening" where they immediately cast their Domain Expansion, Infinite Void, but only for 0.2 seconds. This distributes the sure-hit effect of the domain in such a manner that it leaves any nearby target helpless for 7 seconds as the user prepares to rush them at unbelievable speeds with relentless strikes split into 3 phases. After the first phase, the user is able to hold the head of any dead target they come across. After the rush ends, the user is gasping for air with all their moves on cooldown and no Awakening meter. Though vulnerable during this state, they are able to gain i-frames if they manage to collect 2 heads.'},
         { name: 'Lapse Blue Max', desc: 'The player unleashes a controllable blue orb that sucks in everything near it. Using this move in the air keeps you airborne and allows you to control the orb much better. Will linger if something dies in it.'},
         { name: 'Reversal Red Max', desc: `The user fires a powerful red orb in the direction they're facing. If it hits, it'll ragdoll the enemy, doing less damage the farther they were. Just like Lapse Blue MAX, casting it in the air causes you to levitate and aim with your mouse, but it makes you go a little higher than the previous move.`},

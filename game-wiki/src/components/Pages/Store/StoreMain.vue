@@ -1,16 +1,16 @@
 <template>
   <div class="page-shell page-bg-store min-h-screen flex flex-col items-center text-white font-['Finger_Paint']">
     
-    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 flex flex-col items-center gap-6 md:gap-8">
       
-      <PageWrap class="flex flex-col items-center gap-8 w-full">
+      <PageWrap class="flex flex-col items-center gap-6 md:gap-8 w-full">
         <header class="text-center">
-          <h1 class="text-4xl md:text-6xl leading-tight m-0">Store</h1>
-          <p class="text-lg md:text-xl mt-2.5 opacity-90">See the goods you can spend your money on this game</p>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight m-0">Store</h1>
+          <p class="text-base md:text-lg lg:text-xl mt-2.5 opacity-90">See the goods you can spend your money on this game</p>
         </header>
 
         <nav class="flex justify-center w-full">
-          <div class="flex flex-wrap justify-center gap-[15px] bg-black/20 py-[15px] px-[30px] rounded-[40px] w-fit mx-auto border border-white/5">
+          <div class="flex flex-wrap justify-center gap-2 md:gap-[15px] bg-black/20 py-2.5 md:py-[15px] px-4 md:px-[30px] rounded-2xl md:rounded-[40px] w-full md:w-fit mx-auto border border-white/5">
             <FilterButton
               v-for="tab in tabItems"
               :key="tab.id"
@@ -28,9 +28,9 @@
             v-if="activeTab === 'shop' || activeTab === 'rewards'" 
             variant="default" 
             padding="none" 
-            class="max-w-[1000px] p-5 md:p-10 w-full"
+            class="max-w-[1000px] p-4 md:p-10 w-full"
           >
-             <div class="text-center text-2xl md:text-3xl mb-8 pb-5">
+             <div class="text-center text-2xl md:text-3xl mb-6 md:mb-8 pb-5">
                <span class="border-b border-emerald-500 px-6 py-3 leading-loose">
                  {{ currentData.subtitle }}
                </span>
@@ -59,10 +59,10 @@
 
           <PageWrap 
             v-else
-            variant="default" padding="none" class="w-full max-w-[1100px] p-5 md:p-10"
+            variant="default" padding="none" class="w-full max-w-[1100px] p-4 md:p-10"
           >
-            <div class="text-center mb-10">
-              <h2 class="text-3xl border-b border-emerald-500 inline-block px-8 pb-2">
+            <div class="text-center mb-8 md:mb-10">
+              <h2 class="text-2xl md:text-3xl border-b border-emerald-500 inline-block px-8 pb-2">
                 {{ activeTabLabel }} List
               </h2>
             </div>

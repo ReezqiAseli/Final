@@ -1,18 +1,18 @@
 <template>
   <div class="page-shell page-bg-counters min-h-screen flex flex-col items-center font-['Finger_Paint'] text-white">
     
-    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center gap-8">
-      <PageWrap class="flex flex-col items-center gap-8">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 flex flex-col items-center gap-6 md:gap-8">
+      <PageWrap class="flex flex-col items-center gap-6 md:gap-8">
         <header class="text-center w-full">
-          <h1 class="font-['Finger_Paint'] text-5xl md:text-6xl m-0">Counter Guide</h1>
-          <p class="text-lg md:text-xl opacity-80 mt-2">Learn the best responses to every cursed technique</p>
+          <h1 class="font-['Finger_Paint'] text-4xl md:text-5xl lg:text-6xl m-0">Counter Guide</h1>
+          <p class="text-base md:text-lg lg:text-xl opacity-80 mt-2">Learn the best responses to every cursed technique</p>
         </header>
 
         <section class="text-center w-full">
-          <h3 class="font-['Finger_Paint'] text-xl text-[#00bba6] mb-5">Select Your Character:</h3>
+          <h3 class="font-['Finger_Paint'] text-lg md:text-xl text-[#00bba6] mb-3 md:mb-5">Select Your Character:</h3>
           
           <div class="flex justify-center w-full">
-            <div class="flex flex-wrap justify-center gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-10 rounded-full border border-white/5 w-fit mx-auto">
+            <div class="flex flex-wrap justify-center gap-2 md:gap-5 bg-black/20 backdrop-blur-sm py-2.5 px-4 md:px-10 rounded-2xl md:rounded-full border border-white/5 w-full md:w-fit mx-auto">
               <FilterButton
                 v-for="char in characters"
                 :key="char.id"
