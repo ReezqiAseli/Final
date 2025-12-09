@@ -60,10 +60,10 @@
 
     <div 
       v-if="selectedCharacter" 
-      class="fixed inset-0 bg-black/80 flex justify-center items-end md:items-center p-0 md:p-5 z-50 backdrop-blur-sm"
+      class="fixed inset-0 bg-black/80 flex justify-center items-end md:items-center p-5 md:pt-24 md:p-5 z-50 backdrop-blur-sm"
       @click="closeCharacterModal"
     >
-      <div class="bg-[#0f2c4a] border-t md:border border-slate-800 rounded-t-2xl md:rounded-2xl w-full max-w-[800px] h-[85vh] md:h-auto md:max-h-[90vh] p-5 md:p-8 relative overflow-y-auto scrollbar-hide shadow-2xl" @click.stop>
+      <div class="bg-[#0f2c4a] border-t md:border border-slate-800 rounded-t-2xl md:rounded-2xl w-full max-w-[800px] h-[85vh] md:h-auto md:max-h-[800px] p-5 md:p-8 relative overflow-y-auto scrollbar-hide" @click.stop>
         <button class="absolute top-4 right-4 text-white/50 text-2xl hover:text-emerald-500 transition-colors z-10 bg-black/20 rounded-full w-8 h-8 flex items-center justify-center" @click="closeCharacterModal">✕</button>
 
         <div class="flex flex-col md:flex-row gap-5 items-center md:items-start mb-6 md:mb-8">
@@ -178,10 +178,25 @@ import yujiImg from '@/assets/img/Yuji.png';
 import yukiImg from '@/assets/img/Yuki.png';
 import yutaImg from '@/assets/img/Yuta.png';
 
-// gifs
-import captionGifs from '@/assets/img/gifs/caption.gif';
-import DomainGojoGifs from '@/assets/img/gifs/DomainExpansionGojo.mp4';
-import LapseBlueGif from '@/assets/img/gifs/LapseBlue25.gif';
+// Gojo Vids
+import ReversalRedC from '@/assets/img/gifs/Gojo/ReversalRedC.mp4';
+import HollowNuke from '@/assets/img/gifs/Gojo/HollowNuke.mp4';
+import HollowPurple from '@/assets/img/gifs/Gojo/HollowPurple.mp4';
+import SixEyes from '@/assets/img/gifs/Gojo/SixEyes.mp4';
+import InfiniteVoid from '@/assets/img/gifs/Gojo/DomainExpansionGojo.mp4';
+import LapseBlueMax from '@/assets/img/gifs/Gojo/LapseBlueMax.mp4';
+import ReversalRedMax from '@/assets/img/gifs/Gojo/ReversalRedMax.mp4';
+import ReversalRedMaxS from '@/assets/img/gifs/Gojo/ReversalRedMaxS.mp4';
+import Limitless from '@/assets/img/gifs/Gojo/Limitless.mp4';
+import StationDomain from '@/assets/img/gifs/Gojo/StationDomain.mp4';
+import TwoFoldKick from '@/assets/img/gifs/Gojo/TwofoldKick.mp4';
+import RapidPunch from '@/assets/img/gifs/Gojo/RapidPunch.mp4';
+import LapseBlue from '@/assets/img/gifs/Gojo/LapseBlue.mp4';
+import LapseBlueS from '@/assets/img/gifs/Gojo/LapseBlueS.mp4';
+import ReversalRed from '@/assets/img/gifs/Gojo/ReversalRed.mp4';
+import ReversalRedS from '@/assets/img/gifs/Gojo/ReversalRedS.mp4';
+
+import { preview } from 'vite';
 
 const searchQuery = ref('');
 const activeFilter = ref('All');
@@ -221,26 +236,26 @@ const characters = [
     summary: `"Throughout Heaven and Earth, I alone am the Honored One."`,
     skillSets: {
       base: [
-        { name: 'Lapse Blue', desc: 'The user attracts the opponent towards them, then suspends them in place to kick them skyward. Youre able to follow up with the special immediately after the kick to deal additional damage.', preview: LapseBlueGif },
-        { name: 'Reversal: Red', desc: 'The user manifests as a vibrant red orb that explodes with massive repulsive force when touched by anything. The orb will slow down as it travels, and if it does not contact anything, it will stop and explode anyways. A blocked Red deals half the damage but does not kill nor ragdoll.', preview: captionGifs },
-        { name: 'Reversal Red (Variant)', desc: 'If the ability is followed immediately by the special, the user will teleport behind the enemy and materialize upside down, before sending out the projectile. (If this variant is used on an airborne target, then this will negate the immediate wake up from ragdoll.)'},
-        { name: 'Reversal Red (Counter)', desc: `If the previous variant was used during a target's action such as a move or dash, they will be stunned in place unable to react to the projectile coming from the user announcing: "赫" (pronounced "Aka", and means "Red") as they send it forwards.`},
-        { name: 'Rapid Punches', desc: 'The user hits the enemy with a spinning kick then locks them in place, performing a quick barrage of punches on them before then sending the final blow that ragdolls the enemy forwards in a slightly left angle. While normally unblockable, this move cannot connect on a blocking player if they are about to get up from ragdoll.'},
-        { name: 'Twofold Kick', desc: 'The user kicks their enemy up, anchoring them in the air, and guaranteeing an unblockable second kick that bounces the target higher given the user is uninterrupted. The first kick grants melee immunity for a short while.'},
+        { name: 'Lapse Blue', desc: 'The user attracts the opponent towards them, then suspends them in place to kick them skyward. Youre able to follow up with the special immediately after the kick to deal additional damage.', preview: LapseBlue },
+        { name: 'Reversal: Red', desc: 'The user manifests as a vibrant red orb that explodes with massive repulsive force when touched by anything. The orb will slow down as it travels, and if it does not contact anything, it will stop and explode anyways. A blocked Red deals half the damage but does not kill nor ragdoll.', preview: ReversalRed },
+        { name: 'Reversal Red (Variant)', desc: 'If the ability is followed immediately by the special, the user will teleport behind the enemy and materialize upside down, before sending out the projectile. (If this variant is used on an airborne target, then this will negate the immediate wake up from ragdoll.)', preview: ReversalRedS },
+        { name: 'Reversal Red (Counter)', desc: `If the previous variant was used during a target's action such as a move or dash, they will be stunned in place unable to react to the projectile coming from the user announcing: "赫" (pronounced "Aka", and means "Red") as they send it forwards.`, preview: ReversalRedC },
+        { name: 'Rapid Punches', desc: 'The user hits the enemy with a spinning kick then locks them in place, performing a quick barrage of punches on them before then sending the final blow that ragdolls the enemy forwards in a slightly left angle. While normally unblockable, this move cannot connect on a blocking player if they are about to get up from ragdoll.', preview: RapidPunch },
+        { name: 'Twofold Kick', desc: 'The user kicks their enemy up, anchoring them in the air, and guaranteeing an unblockable second kick that bounces the target higher given the user is uninterrupted. The first kick grants melee immunity for a short while.', preview: TwoFoldKick},
       ],
       awakening: [
-        { name: 'Six Eyes', desc: `Once the Awakening is activated, the user removes their blindfold and their eyes start to glow blue while punching their palm, along with the words "Let's get" "...A little crazy".`, preview: DomainGojoGifs },
-        { name: "0.2 Second Infinite Void", desc: 'By using the special during the Awakening sequence, the player activates an "Alternate Awakening" where they immediately cast their Domain Expansion, Infinite Void, but only for 0.2 seconds. This distributes the sure-hit effect of the domain in such a manner that it leaves any nearby target helpless for 7 seconds as the user prepares to rush them at unbelievable speeds with relentless strikes split into 3 phases. After the first phase, the user is able to hold the head of any dead target they come across. After the rush ends, the user is gasping for air with all their moves on cooldown and no Awakening meter. Though vulnerable during this state, they are able to gain i-frames if they manage to collect 2 heads.'},
-        { name: 'Lapse Blue Max', desc: 'The player unleashes a controllable blue orb that sucks in everything near it. Using this move in the air keeps you airborne and allows you to control the orb much better. Will linger if something dies in it.'},
-        { name: 'Reversal Red Max', desc: `The user fires a powerful red orb in the direction they're facing. If it hits, it'll ragdoll the enemy, doing less damage the farther they were. Just like Lapse Blue MAX, casting it in the air causes you to levitate and aim with your mouse, but it makes you go a little higher than the previous move.`},
-        { name: 'Reversal Red Max (Variant)', desc: 'If the user uses their special while the move is activating, the Red will return to the user, damaging themselves if it does not hit an enemy. If it does collide with an enemy, they will be pushed to the user, who then delivers a Black Flash, knocking them down.'},
-        { name: 'Hollow Purple', desc: 'The user combines the amplified (Blue) and the reversal (Red) to create an imaginary purple mass that rushes forward, destroying anything in its way. There is a small area between the user and the purple mass where enemies will not take damage, so be careful where you shoot it from the ground. Similar to the other moves, using it while in the air will cause the user to levitate and get a 360° aim. This can shatter most domains from the outside.'},
-        { name: 'Infinite Void', desc: 'A pop-up appears, showing the user crossing their fingers, saying the words "Domain Expansion: Infinite Void" as it pulls anyone around them in a radius into this domain. This domain stops any and all movement from enemies by overloading their minds with endless stimuli and knowledge, leaving them in an effectively catatonic state, until the domain ends. The domain lasts for about 14 seconds.'},
-        { name: 'Hollow Nuke', desc: 'Killing someone with Lapse Blue Max will make it stays in place for a few seconds, use Rversal Red Max to create a Hollow Nuke that deals massive damage in a large radius around the orb.'},
+        { name: 'Six Eyes', desc: `Once the Awakening is activated, the user removes their blindfold and their eyes start to glow blue while punching their palm, along with the words "Let's get" "...A little crazy".`, preview: SixEyes },
+        { name: "0.2 Second Infinite Void", desc: 'By using the special during the Awakening sequence, the player activates an "Alternate Awakening" where they immediately cast their Domain Expansion, Infinite Void, but only for 0.2 seconds. This distributes the sure-hit effect of the domain in such a manner that it leaves any nearby target helpless for 7 seconds as the user prepares to rush them at unbelievable speeds with relentless strikes split into 3 phases. After the first phase, the user is able to hold the head of any dead target they come across. After the rush ends, the user is gasping for air with all their moves on cooldown and no Awakening meter. Though vulnerable during this state, they are able to gain i-frames if they manage to collect 2 heads.', preview: StationDomain},
+        { name: 'Lapse Blue Max', desc: 'The player unleashes a controllable blue orb that sucks in everything near it. Using this move in the air keeps you airborne and allows you to control the orb much better. Will linger if something dies in it.', preview: LapseBlueMax},
+        { name: 'Reversal Red Max', desc: `The user fires a powerful red orb in the direction they're facing. If it hits, it'll ragdoll the enemy, doing less damage the farther they were. Just like Lapse Blue MAX, casting it in the air causes you to levitate and aim with your mouse, but it makes you go a little higher than the previous move.`, preview: ReversalRedMax },
+        { name: 'Reversal Red Max (Variant)', desc: 'If the user uses their special while the move is activating, the Red will return to the user, damaging themselves if it does not hit an enemy. If it does collide with an enemy, they will be pushed to the user, who then delivers a Black Flash, knocking them down.', ReversalRedMaxS},
+        { name: 'Hollow Purple', desc: 'The user combines the amplified (Blue) and the reversal (Red) to create an imaginary purple mass that rushes forward, destroying anything in its way. There is a small area between the user and the purple mass where enemies will not take damage, so be careful where you shoot it from the ground. Similar to the other moves, using it while in the air will cause the user to levitate and get a 360° aim. This can shatter most domains from the outside.', preview: HollowPurple },
+        { name: 'Infinite Void', desc: 'A pop-up appears, showing the user crossing their fingers, saying the words "Domain Expansion: Infinite Void" as it pulls anyone around them in a radius into this domain. This domain stops any and all movement from enemies by overloading their minds with endless stimuli and knowledge, leaving them in an effectively catatonic state, until the domain ends. The domain lasts for about 14 seconds.', preview: InfiniteVoid },
+        { name: 'Hollow Nuke', desc: 'Killing someone with Lapse Blue Max will make it stays in place for a few seconds, use Rversal Red Max to create a Hollow Nuke that deals massive damage in a large radius around the orb.', preview: HollowNuke },
       ],
       special: [
-        { name: 'Limitless', desc: 'The user raises their hand before teleporting to an enemy. Requires 6% of the Awakening Bar, and grants low endlag.' },
-        { name: 'Limitless (Variant)', desc: 'When used on an airborne enemy, the user lands an air kick, knocking the target towards the floor with a slight ragdoll.' },
+        { name: 'Limitless', desc: 'The user raises their hand before teleporting to an enemy. Requires 6% of the Awakening Bar, and grants low endlag.', preview: Limitless },
+        { name: 'Limitless (Variant)', desc: 'When used on an airborne enemy, the user lands an air kick, knocking the target towards the floor with a slight ragdoll.', preview: LapseBlueS},
       ],
     },
   },

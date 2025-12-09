@@ -24,12 +24,7 @@
 
         <section class="w-full flex justify-center">
           
-          <PageWrap 
-            v-if="activeTab === 'shop' || activeTab === 'rewards'" 
-            variant="default" 
-            padding="none" 
-            class="max-w-[1000px] p-4 md:p-10 w-full"
-          >
+          <div v-if="!Array.isArray(currentData)" class="w-full max-w-[1000px]">
              <div class="text-center text-2xl md:text-3xl mb-6 md:mb-8 pb-5">
                <span class="border-b border-emerald-500 px-6 py-3 leading-loose">
                  {{ currentData.subtitle }}
@@ -37,30 +32,34 @@
              </div>
 
              <div class="flex flex-col gap-[30px]">
-               <div class="w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+               
+               <div class="w-full rounded-xl overflow-hidden border border-emerald-500 p-1.5 bg-black/20 shadow-2xl">
                  <img 
                    :src="currentData.bannerImage" 
                    :alt="activeTabLabel + ' Banner'" 
-                   class="w-full h-auto block object-cover" 
+                   class="w-full h-auto block object-cover rounded-lg" 
                  />
                </div>
 
-               <div class="flex flex-col gap-[30px]">
-                 <div v-for="(section, idx) in currentData.sections" :key="idx">
-                   <h3 class="text-[#00bba6] text-2xl md:text-3xl mb-2.5">{{ section.title }}</h3>
+               <div class="flex flex-col gap-5">
+                 <div 
+                   v-for="(section, idx) in currentData.sections" 
+                   :key="idx"
+                   class="border border-emerald-500 rounded-xl p-5 bg-black/20 transition-all hover:bg-white/5"
+                 >
+                   <h3 class="text-emerald-400 text-2xl md:text-3xl mb-2.5">
+                     {{ section.title }}
+                   </h3>
                    <p class="text-base md:text-lg leading-relaxed text-[#e0e0e0] opacity-90">
                      {{ section.text }}
                    </p>
                  </div>
                </div>
+
              </div>
-          </PageWrap>
+          </div>
 
-
-          <PageWrap 
-            v-else
-            variant="default" padding="none" class="w-full max-w-[1100px] p-4 md:p-10"
-          >
+          <div v-else class="w-full max-w-[1100px]">
             <div class="text-center mb-8 md:mb-10">
               <h2 class="text-2xl md:text-3xl border-b border-emerald-500 inline-block px-8 pb-2">
                 {{ activeTabLabel }} List
@@ -92,8 +91,7 @@
             <div v-else class="text-center py-20 text-slate-500 italic border-2 border-dashed border-slate-800 rounded-2xl">
               <p class="text-xl">No items available in {{ activeTabLabel }} yet.</p>
             </div>
-
-          </PageWrap>
+          </div>
 
         </section>
       </PageWrap>
@@ -110,7 +108,7 @@ import PageWrap from '@/components/Reusable/PageWrap.vue';
 
 // Placeholder Images
 const placeholderImg = 'https://placehold.co/800x400/0f2c4a/white?text=Rewards+Banner';
-const rewardImg = 'https://placehold.co/800x400/00b894/white?text=Daily+Login+Event';
+// const rewardImg = 'https://placehold.co/800x400/00b894/white?text=Daily+Login+Event'; // Unused in this version but kept for ref
 
 const activeTab = ref('shop');
 
@@ -138,7 +136,7 @@ const storeContent = {
   },
 
   rewards: {
-    bannerImage: captionGifs,
+    bannerImage: captionGifs, // You might want to change this to rewardImg later
     subtitle: 'Claim free items simply by playing the game.',
     sections: [
       {
@@ -198,3 +196,7 @@ const activeTabLabel = computed(() => {
   return tab ? tab.label : '';
 });
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+</style>

@@ -26,7 +26,6 @@
         <section class="w-full flex justify-center">
           <div class="w-full max-w-[1100px]">
             
-            <PageWrap variant="solid" padding="none" class="min-h-[600px] p-4 md:p-[50px]">
               <h2 class="text-2xl md:text-4xl mb-6 pb-3 text-center">
                 <span class="border-b px-6 border-emerald-500">{{ currentContent.title }}</span>
               </h2>
@@ -94,7 +93,6 @@
                   </div>
                 </div>
               </div>
-            </PageWrap>
 
           </div>
         </section>
