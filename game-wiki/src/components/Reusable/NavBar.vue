@@ -9,7 +9,6 @@
       </span>
     </div>
 
-    <!-- Burger Menu Button -->
     <button 
       class="md:hidden text-white p-2 focus:outline-none" 
       @click="toggleMenu"
@@ -21,7 +20,6 @@
       </svg>
     </button>
 
-    <!-- Links -->
     <div 
       class="w-full md:w-auto md:flex md:items-center md:gap-5 transition-all duration-300 ease-in-out overflow-hidden md:overflow-visible"
       :class="[isMenuOpen ? 'max-h-[400px] opacity-100 mt-4 pb-4 border-t border-white/10 pt-4' : 'max-h-0 opacity-0 md:max-h-full md:opacity-100 md:mt-0 md:pb-0 md:border-none md:pt-0']"

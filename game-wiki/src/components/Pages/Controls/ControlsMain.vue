@@ -44,8 +44,8 @@
                       @click="togglePreview(section.heading)"
                     >
                       <div class="pr-4">
-                        <span class="block font-bold text-emerald-500 mb-1.5">{{ section.heading }}</span>
-                        <p class="text-lg leading-relaxed text-gray-200">{{ section.text }}</p>
+                        <span class="block text-xl font-bold text-emerald-500 mb-1.5">{{ section.heading }}</span>
+                        <p class="text-xl leading-relaxed text-gray-200">{{ section.text }}</p>
                       </div>
                       <span 
                         class="text-xl text-slate-300 transition-transform duration-200 flex-shrink-0"
@@ -53,11 +53,11 @@
                       >⌄</span>
                     </button>
 
-                    <p v-if="section.additionalText" class="mt-4 italic opacity-80 text-gray-300 text-sm">
+                    <p v-if="section.additionalText" class="mt-4 italic opacity-80 text-gray-300 text-lg">
                       {{ section.additionalText }}
                     </p>
                     
-                    <ul v-if="section.subItems" class="list-none pl-5 my-4 space-y-2 text-gray-200">
+                    <ul v-if="section.subItems" class="list-none pl-5 my-4 text-lg space-y-2 text-gray-200">
                       <li v-for="item in section.subItems" :key="item" class="relative before:content-['•'] before:absolute before:-left-4 before:text-emerald-500">
                         {{ item }}
                       </li>
@@ -110,6 +110,14 @@ import FilterButton from '@/components/Reusable/FilterButton.vue';
 import PageWrap from '@/components/Reusable/PageWrap.vue';
 import { ref, computed } from 'vue';
 
+import SixEyes from '@/assets/img/gifs/Gojo/SixEyes.mp4';
+import Limitless from '@/assets/img/gifs/Gojo/Limitless.mp4';
+import LapseBlue from '@/assets/img/gifs/Gojo/LapseBlue.mp4';
+import LurkingS from '@/assets/img/gifs/Megumi/LurkingS.mp4';
+import Chain from '@/assets/img/gifs/Yuji/Chain.mp4';
+import Parkour from '@/assets/img/gifs//Parkour.webp';
+import Sprinting from '@/assets/img/gifs/Rrunning.webp';
+
 const activeTab = ref('movement');
 const activePreview = ref(null);
 
@@ -132,7 +140,7 @@ const contentData = {
       {
         heading: "Sprinting",
         text: "While sprinting, your character will run faster than normal, and will automatically slide, mantle and vault in order to avoid small obstacles such as debris and ledges. To sprint, press W twice on PC. On other platforms, it is impossible to sprint unless you have Auto-Run on from the in-game Settings (Note that sprinting is only performed when walking forwards).",
-        preview: 'https://media1.tenor.com/m/7H4OJzSRpgkAAAAC/rise-kujikawa-yu-narukami.gif',
+        preview: Sprinting,
       },
       {
         heading: "Dashing",
@@ -148,13 +156,30 @@ const contentData = {
           "Sliding: For obstacles that are raised slightly above the ground, offering a gap.",
         ],
         additionalText: "By holding the jump button (Space on PC, UP Arrow on mobile, X on PlayStation and A on Xbox) and looking sideways against a vertical surface (don't look straight at it or you won't bounce) while moving you towards it, and you will be able to wallclimb 3 times before having to touch the ground again (parkouring also counts touching the ground).",
-        preview: defaultControlPreview,
+        preview: Parkour,
       },
     ],
   },
   combat: {
     title: "Combat",
-    sections: [{ heading: "Coming Soon", text: "Combat controls information will be displayed here." }]
+    sections: [
+      { 
+        heading: "Basic Attacks", 
+        text: `Basic attacks can be performed by clicking/holding your left mouse button on PC (usually referred to as LMB or M1), the button with a punch icon on mobile, O on PlayStation or B on Xbox. Upon input, the user performs a forward strike with a 0.25s startup. This strike can be chained up to four times per combo, with the first two hits dealing 3 damage each and the final two 4 damage each, before 1.7s of endlag occurs. (Several characters possess distinct M1 animations, visual trails, and/or unique properties) `,
+        preview: Chain,
+      },
+      {
+        heading: "Interactables",
+        text: `Standing near a throwable (Trash Can, Tombstone, Arcade Machine..) and pressing the melee button will permit you to pick it up and hold it over your head. Holding a throwable will disable your ability to run, M1, block, and dash, and being hit during this will unequip the throwable. Pressing the melee button again will force you to toss the throwable, allowing it to deal 15 damage to anybody it hits. `,
+        preview: LurkingS,
+      },
+      {
+        heading: "Blocking",
+        text: `When pressing/holding F on PC, the shield icon button on mobile, □ on PlayStation, or X on Xbox, your avatar will perform a block stance, shielding themselves with their arms (animation depends on the character), in order to nullify the damage and/or stun of incoming attacks, in exchange for slower movement and inability to attack or dash. 
+        Block is only effective within roughly a 140-degree angle in front of you, so make sure you're facing your enemy when you block. Some moves cannot be blocked, while others will deal reduced damage instead. Certain moves deal more damage when blocked, although this is very rare.`,
+        preview: defaultControlPreview,
+      },
+  ]
   },
   abilities: {
     title: "Abilities",
@@ -163,14 +188,25 @@ const contentData = {
         heading: "Moves", 
         text: `Clicking one of the 1, 2, 3, 4 keybinds on PC, pressing a skill box on mobile, using L1, L2, R2, R1 on Playstation or LB, LT, RT, RB on Xbox will activate one of your moves. Moves are skills unique to each character, that allow you to deal damage or counter an attack, and will typically go on cooldown once used. 
         Some moves may have certain requirements to work properly, such as needing a target in sight. The user will perform a "variant" of a move when a certain condition is fulfilled, notably being in the air, pressing the move twice, holding the move's input, and finally using the move after, during or before the activation of another move/special. `,
-        preview: 'https://media1.tenor.com/m/7H4OJzSRpgkAAAAC/rise-kujikawa-yu-narukami.gif',
+        preview: LapseBlue,
       },
       {
         heading: "Special",
         text: `Specials are considered like an extra move for a certain character with its cooldown being shown under the Awakening Bar to the right, and will sometimes require a portion of it to be used (depending on the character). The player's special is activated by pressing R on PC, the star button icon on mobile, the left directional key on PlayStation, and the D-pad Left on Xbox. 
         Using Limitless on an airborne enemy (e.g Using Limitless on an airborne enemy (e.g. after Lapse Blue) Specials will either function as utility or combat, and can have varying effects depending on how and when they're used (e.g. Honored One's special performs a kick when used on an airborne player).`,
-        preview: `https://media1.tenor.com/m/7H4OJzSRpgkAAAAC/rise-kujikawa-yu-narukami.gif`,
+        preview: Limitless,
       },
+      {
+        heading: "Awakening",
+        text: `Above the skill boxes sits a long bar with a title above it, called the "Awakening Bar" (or "Ultimate"). This bar fills up once you deal damage to an enemy, up to 285 damage. Once full, you will briefly flash in white, and the bar will get text indicating what button to press in order to activate the Awakening sequence and proceed to the Awakened state: G for PC, the Awakening Bar for mobile, 
+        right directional key on PlayStation, and the D-pad Up on Xbox. The progress made towards filling the Awakening Bar has a different color for each character, shared with their special. `,
+        preview: SixEyes,
+      },
+      {
+        heading: "Passives",
+        text: `Passives are unique properties assigned to a character, usually unlocked upon Awakening, that grant them an extra advantage in certain interactions. They are almost always combat-oriented, but can sometimes be utility-based. `,
+        preview: `https://media1.tenor.com/m/7H4OJzSRpgkAAAAC/rise-kujikawa-yu-narukami.gif`,
+      }
     ],
   },
 };

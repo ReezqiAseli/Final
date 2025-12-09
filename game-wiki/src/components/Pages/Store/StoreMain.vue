@@ -106,9 +106,15 @@ import captionGifs from '@/assets/img/gifs/Shop.webp';
 import FilterButton from '@/components/Reusable/FilterButton.vue';
 import PageWrap from '@/components/Reusable/PageWrap.vue';
 
-// Placeholder Images
+import Spike from '@/assets/img/Store/Spike.png';
+import Wot from '@/assets/img/Store/Wot.png';
+import Maho from '@/assets/img/Store/Maho.png';
+import Higur from '@/assets/img/Store/Higur.png';
+import Gamepass from '@/assets/img/Store/Gamepass.png';
+import Rika from '@/assets/img/Store/Rika.png';
+import Redeem from '@/assets/img/Store/Redeem.png';
+
 const placeholderImg = 'https://placehold.co/800x400/0f2c4a/white?text=Rewards+Banner';
-// const rewardImg = 'https://placehold.co/800x400/00b894/white?text=Daily+Login+Event'; // Unused in this version but kept for ref
 
 const activeTab = ref('shop');
 
@@ -136,16 +142,12 @@ const storeContent = {
   },
 
   rewards: {
-    bannerImage: captionGifs, // You might want to change this to rewardImg later
-    subtitle: 'Claim free items simply by playing the game.',
+    bannerImage: Redeem,
+    subtitle: 'Claim free items by redeeming codes.',
     sections: [
       {
-        title: 'Daily Login Bonus',
-        text: 'Log in every day to claim increasing cash rewards. The streak resets on day 7, granting a massive bonus box containing random emotes or items. Don\'t miss a day!'
-      },
-      {
-        title: 'Level Milestones',
-        text: 'Grinding levels isn\'t just for status. Upon reaching Level 50, you unlock the exclusive "Master" title and receive 5000$ instant cash to spend on your favorite finishers.'
+        title: 'Code Redeem',
+        text: 'Have a space to redeem codes, you can get codes from exploring the map (Tze hides them) or from the games official social media pages. Remeed codes to get free money!'
       }
     ]
   },
@@ -153,37 +155,55 @@ const storeContent = {
   gamepasses: [
     {
       title: 'Early Access',
-      price: 'R$ 299',
-      image: placeholderImg,
-      desc: 'Get access to new characters 2 weeks before they are released globally.'
+      price: 'R$ 300',
+      image: Gamepass,
+      desc: 'Get access to unreleased characters.'
     },
     {
-      title: 'Custom Emotes',
+      title: 'Custom Kill Sound',
+      price: 'R$ 100',
+      image: Gamepass,
+      desc: 'Costumize the sound that plays when you finish a player.'
+    },
+    {
+      title: 'More Emote Slots',
       price: 'R$ 150',
-      image: placeholderImg,
-      desc: 'Unlock 5 additional slots for custom emotes to taunt your enemies.'
+      image: Gamepass,
+      desc: 'Adds 4 more slots to equip emotes in'
     },
-    {
-      title: 'Double Cash',
-      price: 'R$ 450',
-      image: placeholderImg,
-      desc: 'Permanently earn 2x cash from all sources (Kills, Daily, Codes).'
-    }
   ],
   
   merch: [
     {
-      title: 'Gojo Hoodie',
-      price: 'R$ 50',
-      image: placeholderImg,
-      desc: 'Official Jujutsu Shenanigans hoodie with printed logo.'
+      title: 'Rika [JJS]',
+      price: 'R$ 135',
+      image: Rika,
+      desc: 'Rika [JJS] merchandise.'
     },
     {
-      title: 'Toji Pants',
-      price: 'R$ 15',
-      image: placeholderImg,
-      desc: 'Stylish pants inspired by the Sorcerer Killer.'
-    }
+      title: 'Judge Man [JJS]',
+      price: 'R$ 135',
+      image: Higur,
+      desc: 'Accused of: Using Vessel.'
+    },
+    {
+      title: 'Divine General Waist [JJS]',
+      price: 'R$ 60',
+      image: Maho,
+      desc: 'BigRaga help me.'
+    },
+    {
+      title: 'Mahito Worm [JJS]',
+      price: 'R$ 135',
+      image: Wot,
+      desc: 'what is this vro ToT.'
+    },
+    {
+      title: 'True Form Left Blade [JJS]',
+      price: 'R$ 135',
+      image: Spike,
+      desc: 'Mahito Tru Form Blade Merchandise.'
+    },
   ]
 };
 
