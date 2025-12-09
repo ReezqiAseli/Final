@@ -67,7 +67,7 @@
         <button class="absolute top-4 right-4 text-white/50 text-2xl hover:text-emerald-500 transition-colors z-10 bg-black/20 rounded-full w-8 h-8 flex items-center justify-center" @click="closeCharacterModal">✕</button>
 
         <div class="flex flex-col md:flex-row gap-5 items-center md:items-start mb-6 md:mb-8">
-          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-2xl border-2 border-slate-800 shadow-lg" />
+          <img :src="selectedCharacter.image" :alt="`${selectedCharacter.name} portrait`" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-2xl border-2 border-slate-800" />
           <div class="text-center md:text-left">
             <p class="uppercase tracking-[0.2em] text-xs font-bold text-emerald-400 mb-2">{{ selectedCharacter.type }}</p>
             <h2 class="text-3xl md:text-5xl text-white font-bold leading-tight">{{ selectedCharacter.name }}</h2>

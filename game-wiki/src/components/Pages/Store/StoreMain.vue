@@ -33,7 +33,7 @@
 
              <div class="flex flex-col gap-[30px]">
                
-               <div class="w-full rounded-xl overflow-hidden border border-emerald-500 p-1.5 bg-black/20 shadow-2xl">
+               <div class="w-full rounded-xl overflow-hidden border border-emerald-500 p-1.5 bg-black/20">
                  <img 
                    :src="currentData.bannerImage" 
                    :alt="activeTabLabel + ' Banner'" 
@@ -74,7 +74,7 @@
               >
                 <div class="aspect-video w-full bg-black/50 overflow-hidden relative">
                   <img :src="item.image" :alt="item.title" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                  <div class="absolute top-3 right-3 bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+                  <div class="absolute top-3 right-3 bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-full">
                     {{ item.price }}
                   </div>
                 </div>
