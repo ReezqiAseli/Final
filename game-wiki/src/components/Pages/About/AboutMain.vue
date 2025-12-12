@@ -4,7 +4,7 @@
             <PageWrap class="w-full max-w-[1250px] min-h-[600px] flex flex-col items-start gap-6 md:gap-8">
                 <div class="text-center">
                     <h1 class="text-4xl md:text-5xl lg:text-5xl m-0">
-                        Moochammad Reezqi Pratama
+                        Mochammad Reezqi Pratama
                     </h1>
                     <h2 class="text-3xl md:text-3xl lg:text-3xl">
                         11231041 - Informatika - ITK
@@ -15,17 +15,19 @@
                         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
                         It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker 
                         including versions of Lorem Ipsum.
-                        <img src= "@/assets/img/Miwa.png" class="md:w-[200px] md:h-[200px] lg:w-[200px] lg:h-[200px]"></img>
+                        <img src= "@/assets/img/Reez.png" class="float-right md:w-[200px] md:h-[200px] lg:w-[200px] lg:h-[200px]"></img>
                     </p>
                 </div>
             </PageWrap>
         </main>
+        <Footer/>
     </div>
 
 </template>
 
 <script setup>
 import PageWrap from '@/components/Reusable/PageWrap.vue'
+import Footer from '@/components/Reusable/Footer.vue'
 
 </script>
 <style>
