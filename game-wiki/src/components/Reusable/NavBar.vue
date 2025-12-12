@@ -61,6 +61,7 @@ const links = [
   { name: 'Controls', path: '/controls' },
   { name: 'Counters', path: '/counters' },
   { name: 'Store', path: '/store' },
+  { name: 'About', path: '/about'}
 ];
 </script>
 

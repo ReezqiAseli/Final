@@ -57,6 +57,5 @@ const cards = [
 </script>
 
 <style>
-/* Kita tetap perlu import font karena Tailwind tidak otomatis mengunduh font Google */
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 </style>

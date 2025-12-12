@@ -5,6 +5,7 @@ import CharactersPage from "@/components/CharactersPage.vue"
 import ControlsPage from "@/components/ControlsPage.vue"
 import CountersPage from "@/components/CountersPage.vue"
 import StorePage from "@/components/StorePage.vue"
+import AboutPage from "@/components/AboutPage.vue"
 
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
       path: "/Store",
       name: "Store",
       component: StorePage
+    },
+    {
+      path: "/About",
+      name: "About",
+      component: AboutPage
     }
   
 ]
