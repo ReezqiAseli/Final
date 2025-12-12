@@ -1,7 +1,8 @@
-Nama file diubah: 
+### Nama file diubah: 
 - NavBar.vue
 - index.js
-Nama file baru:
+
+### Nama file baru:
 - AboutPage.vue
 - AboutMain.vue
 
